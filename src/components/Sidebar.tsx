@@ -1,5 +1,5 @@
 import { Language, Lesson } from '../types';
-import { Menu, X, BookOpen, GraduationCap, Trophy, HelpCircle, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Menu, X, BookOpen, GraduationCap, Trophy, HelpCircle, ArrowRight, CheckCircle2, Lock } from 'lucide-react';
 
 interface SidebarProps {
   lessons: Lesson[];
@@ -15,6 +15,7 @@ interface SidebarProps {
   isCertificateUnlocked: boolean;
   isViewingGlossary: boolean;
   isViewingCertificate: boolean;
+  isPremiumUnlocked: boolean;
 }
 
 export default function Sidebar({
@@ -30,7 +31,8 @@ export default function Sidebar({
   onViewCertificate,
   isCertificateUnlocked,
   isViewingGlossary,
-  isViewingCertificate
+  isViewingCertificate,
+  isPremiumUnlocked
 }: SidebarProps) {
   const progressPercent = Math.round((completedLessons.length / lessons.length) * 100);
 
@@ -199,9 +201,11 @@ export default function Sidebar({
                         : 'bg-white border-[#e5e1da] hover:bg-[#efece6] text-[#636e72]'
                     }`}
                   >
-                    {/* Tick Checkbox */}
+                    {/* Tick Checkbox or Lock */}
                     <div className="mt-0.5 shrink-0">
-                      {isCompleted ? (
+                      {lesson.id >= 4 && !isPremiumUnlocked ? (
+                        <Lock className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#b88c5e]'}`} />
+                      ) : isCompleted ? (
                         <CheckCircle2 className={`w-4 h-4 ${isActive ? 'text-white' : 'text-emerald-600'}`} />
                       ) : (
                         <div className={`w-4 h-4 rounded-full border ${isActive ? 'border-white/50' : 'border-slate-300'}`} />
@@ -209,8 +213,13 @@ export default function Sidebar({
                     </div>
 
                     <div className="truncate">
-                      <span className={`block text-[10px] font-semibold ${isActive ? 'text-amber-50' : 'text-slate-400'}`}>
-                        Module {lesson.id} • {lesson.durationMinutes} {t.minutes[lang]}
+                      <span className={`flex items-center gap-1.5 text-[10px] font-semibold ${isActive ? 'text-amber-50' : 'text-slate-400'}`}>
+                        <span>Module {lesson.id} • {lesson.durationMinutes} {t.minutes[lang]}</span>
+                        {lesson.id >= 4 && !isPremiumUnlocked && (
+                          <span className={`px-1 py-0.2 rounded-xs text-[8px] font-extrabold tracking-wider ${isActive ? 'bg-white/20 text-white' : 'bg-amber-100 text-[#b88c5e]'}`}>
+                            PREMIUM
+                          </span>
+                        )}
                       </span>
                       <span className="block truncate font-medium">
                         {lesson.title[lang]}

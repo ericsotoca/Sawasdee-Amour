@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { Language, Lesson } from './types';
 import { lessons } from './data/lessons';
 import Sidebar from './components/Sidebar';
@@ -9,7 +9,8 @@ import CertificateView from './components/CertificateView';
 import { 
   Menu, BookOpen, GraduationCap, Trophy, CheckCircle, 
   ChevronLeft, ChevronRight, Award, HelpCircle, Heart, 
-  BookOpenCheck, ShieldCheck, Sparkles, CheckSquare, Square
+  BookOpenCheck, ShieldCheck, Sparkles, CheckSquare, Square,
+  Lock, Unlock
 } from 'lucide-react';
 
 export default function App() {
@@ -26,6 +27,17 @@ export default function App() {
   
   // Modal / Celebration trigger
   const [showCelebration, setShowCelebration] = useState(false);
+
+  // Premium Unlock States
+  const [isPremiumUnlocked, setIsPremiumUnlocked] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem('sawasdee_premium_unlocked') === 'true';
+    } catch {
+      return false;
+    }
+  });
+  const [passwordInput, setPasswordInput] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
 
   // Load progress from localStorage on Mount
   useEffect(() => {
@@ -125,6 +137,18 @@ export default function App() {
     }
   };
 
+  const handleUnlockPremium = (e: FormEvent) => {
+    e.preventDefault();
+    const normalized = passwordInput.trim().toUpperCase();
+    if (normalized === 'AMOUR10' || normalized === 'SAWASDEE' || normalized === 'LOVE10') {
+      setIsPremiumUnlocked(true);
+      setPasswordError(false);
+      localStorage.setItem('sawasdee_premium_unlocked', 'true');
+    } else {
+      setPasswordError(true);
+    }
+  };
+
   // Global translation text for general layout
   const t = {
     title: "Sawasdee-Amour Academy",
@@ -182,6 +206,7 @@ export default function App() {
           isCertificateUnlocked={isCertificateUnlocked}
           isViewingGlossary={isViewingGlossary}
           isViewingCertificate={isViewingCertificate}
+          isPremiumUnlocked={isPremiumUnlocked}
         />
 
         {/* Content Panel with Header and Scrollable Body */}
@@ -251,6 +276,72 @@ export default function App() {
             <GlossaryView lang={lang} />
           ) : isViewingCertificate ? (
             <CertificateView lang={lang} onClose={() => setIsViewingCertificate(false)} />
+          ) : activeLesson.id >= 4 && !isPremiumUnlocked ? (
+            <div className="bg-white p-6 sm:p-10 rounded-2xl border border-[#e5e1da] shadow-md max-w-xl mx-auto text-center space-y-6 my-4">
+              <div className="w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center mx-auto text-[#b88c5e] border border-[#e2b07e]/30">
+                <Lock className="w-8 h-8" />
+              </div>
+
+              <div className="space-y-2">
+                <span className="text-[10px] uppercase font-extrabold text-[#b88c5e] tracking-widest bg-[#e2b07e]/15 px-3 py-1 rounded-full">
+                  {lang === 'FR' ? 'Accès Premium Requis' : lang === 'EN' ? 'Premium Access Required' : 'จำเป็นต้องมีสิทธิ์เข้าถึงแบบพรีเมียม'}
+                </span>
+                <h3 className="font-serif text-xl sm:text-2xl font-extrabold text-[#403d39] tracking-tight">
+                  {lang === 'FR' ? 'Débloquez la suite du programme' : lang === 'EN' ? 'Unlock the rest of the curriculum' : 'ปลดล็อกหลักสูตรที่เหลือทั้งหมด'}
+                </h3>
+              </div>
+
+              <div className="text-xs sm:text-sm text-slate-600 leading-relaxed space-y-4 font-sans text-left bg-slate-50/55 p-4 sm:p-5 rounded-xl border border-[#e5e1da]">
+                {lang === 'FR' && (
+                  <p>
+                    Ce module fait partie du programme <strong>Premium</strong> de l'Académie. Pour déverrouiller l'accès complet à tous les modules restants (4 à 12) ainsi qu'au certificat académique final, veuillez demander le mot de passe d'accès à la personne qui vous a partagé ce lien. L'accès total est proposé pour l'équivalent de <strong>10 €</strong>.
+                  </p>
+                )}
+                {lang === 'EN' && (
+                  <p>
+                    This module is part of the Academy's <strong>Premium</strong> curriculum. To unlock full access to all remaining modules (4 to 12) and the final academic certificate, please ask the person who shared this link with you for the password. Full lifetime access is available for the equivalent of <strong>10 €</strong>.
+                  </p>
+                )}
+                {lang === 'TH' && (
+                  <p>
+                    บทเรียนนี้เป็นส่วนหนึ่งของหลักสูตร <strong>พรีเมียม</strong> ของสถาบัน หากต้องการปลดล็อกการเข้าถึงบทเรียนที่เหลือทั้งหมด (บทที่ 4 ถึง 12) รวมถึงสิทธิ์รับใบประกาศนียบัตรเกียรติยศ โปรดติดต่อขอรับรหัสผ่านจากบุคคลที่ส่งลิงก์นี้ให้กับคุณ โดยมีค่าธรรมเนียมการเข้าถึงตลอดชีพเทียบเท่า <strong>10 ยูโร</strong>
+                  </p>
+                )}
+              </div>
+
+              <form onSubmit={handleUnlockPremium} className="space-y-3 pt-2 max-w-sm mx-auto">
+                <div>
+                  <input
+                    type="password"
+                    placeholder={lang === 'FR' ? 'Saisir le mot de passe...' : lang === 'EN' ? 'Enter password...' : 'กรอกรหัสผ่าน...'}
+                    value={passwordInput}
+                    onChange={(e) => {
+                      setPasswordInput(e.target.value);
+                      setPasswordError(false);
+                    }}
+                    className={`w-full px-4 py-3 rounded-xl border-2 text-center text-sm font-bold transition-all outline-none ${
+                      passwordError 
+                        ? 'border-rose-500 bg-rose-50/20 focus:border-rose-500 text-rose-700' 
+                        : 'border-[#e5e1da] focus:border-[#e2b07e] text-slate-800 bg-white'
+                    }`}
+                  />
+                </div>
+
+                {passwordError && (
+                  <p className="text-xs text-rose-500 font-bold">
+                    {lang === 'FR' ? 'Mot de passe incorrect' : lang === 'EN' ? 'Incorrect password' : 'รหัสผ่านไม่ถูกต้อง'}
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  className="w-full py-3 bg-[#e2b07e] hover:bg-[#d4a06d] active:scale-98 text-white font-bold rounded-xl text-xs sm:text-sm shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <Unlock className="w-4 h-4" />
+                  <span>{lang === 'FR' ? 'Déverrouiller le programme' : lang === 'EN' ? 'Unlock curriculum' : 'ปลดล็อกหลักสูตร'}</span>
+                </button>
+              </form>
+            </div>
           ) : (
             /* Active Module View */
             <article className="space-y-8">
