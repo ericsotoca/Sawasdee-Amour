@@ -1,0 +1,6 @@
+{
+  "name": "Sawasdee-Amour Academy",
+  "description": "Un guide académique et un outil d'accompagnement complet sur les relations interculturelles, humaines et juridiques franco-thaïlandaises.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
