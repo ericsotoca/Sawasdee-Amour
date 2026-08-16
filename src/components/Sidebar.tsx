@@ -1,5 +1,5 @@
 import { Language, Lesson, UserRole } from '../types';
-import { Menu, X, BookOpen, GraduationCap, Trophy, HelpCircle, ArrowRight, CheckCircle2, Lock } from 'lucide-react';
+import { Menu, X, BookOpen, GraduationCap, Trophy, HelpCircle, ArrowRight, CheckCircle2, Lock, LogOut } from 'lucide-react';
 
 interface SidebarProps {
   lessons: Lesson[];
@@ -18,6 +18,7 @@ interface SidebarProps {
   isPremiumUnlocked: boolean;
   userRole?: UserRole;
   onRoleChange?: (role: UserRole) => void;
+  onLogout?: () => void;
 }
 
 export default function Sidebar({
@@ -36,7 +37,8 @@ export default function Sidebar({
   isViewingCertificate,
   isPremiumUnlocked,
   userRole,
-  onRoleChange
+  onRoleChange,
+  onLogout
 }: SidebarProps) {
   const progressPercent = Math.round((completedLessons.length / lessons.length) * 100);
 
@@ -271,6 +273,22 @@ export default function Sidebar({
               })}
             </div>
           </div>
+
+          {/* Disconnect/Logout Button */}
+          {onLogout && (
+            <div className="pt-4 border-t border-[#e5e1da]/60">
+              <button
+                id="sidebar-logout-btn"
+                onClick={onLogout}
+                className="w-full py-2.5 px-3 rounded-lg text-xs font-extrabold transition-all flex items-center justify-center gap-2 border border-rose-200 bg-rose-50/40 text-rose-700 hover:bg-rose-50 hover:text-rose-800 cursor-pointer active:scale-98"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span>
+                  {lang === 'FR' ? 'Se déconnecter' : lang === 'EN' ? 'Disconnect' : 'ออกจากระบบ'}
+                </span>
+              </button>
+            </div>
+          )}
 
         </div>
 

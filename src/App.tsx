@@ -108,6 +108,16 @@ export default function App() {
     }
   };
 
+  // Logout helper
+  const handleLogout = () => {
+    setUserRole(null);
+    try {
+      localStorage.removeItem('sawasdee_user_role');
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   // Toggle single lesson manual checkbox completion
   const handleToggleLessonCompleted = (lessonId: number) => {
     let updated: number[];
@@ -257,6 +267,7 @@ export default function App() {
           isPremiumUnlocked={isPremiumUnlocked}
           userRole={userRole}
           onRoleChange={handleRoleChange}
+          onLogout={handleLogout}
         />
 
         {/* Content Panel with Header and Scrollable Body */}
