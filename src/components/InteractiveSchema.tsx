@@ -33,6 +33,10 @@ export default function InteractiveSchema({ lessonId, lang }: InteractiveSchemaP
       return <MatrimonialMatrix lang={lang} />;
     case 10:
       return <HarmonyTree lang={lang} />;
+    case 11:
+      return <RelationshipDecoder lang={lang} />;
+    case 12:
+      return <IntimacyCompass lang={lang} />;
     default:
       return null;
   }
@@ -1482,3 +1486,316 @@ function HarmonyTree({ lang }: { lang: Language }) {
     </div>
   );
 }
+
+/* ============================================================================
+   MODULE 11: Décodeur de Signaux Affectifs (Relationnel)
+   ============================================================================ */
+function RelationshipDecoder({ lang }: { lang: Language }) {
+  const [activeScenario, setActiveScenario] = useState(0);
+
+  const t = {
+    title: {
+      FR: "Décodeur de Signaux Relationnels",
+      EN: "Relationship Signals Decoder",
+      TH: "เครื่องถอดรหัสสัญญาณความสัมพันธ์"
+    },
+    subtitle: {
+      FR: "Cliquez sur une situation pour décoder les intentions de votre conjoint.",
+      EN: "Click on a scenario to decode your partner's true cultural intent.",
+      TH: "คลิกที่สถานการณ์ต่างๆ เพื่อเรียนรู้เจตนาที่แท้จริงของคู่รักของคุณ"
+    },
+    behavior: { FR: "Comportement observé", EN: "Observed Behavior", TH: "พฤติกรรมที่สังเกตพบ" },
+    westernView: { FR: "Interprétation occidentale commune", EN: "Common Western Interpretation", TH: "การตีความแบบตะวันตกทั่วไป" },
+    realIntent: { FR: "Intention culturelle réelle", EN: "Real Cultural Intent", TH: "เจตนาทางวัฒนธรรมที่แท้จริง" },
+    action: { FR: "Action conseillée", EN: "Recommended Action", TH: "คำแนะนำเพื่อการปฏิบัติ" }
+  };
+
+  const scenarios = [
+    {
+      title: {
+        FR: "Le silence après un désaccord",
+        EN: "Silence after a disagreement",
+        TH: "ความเงียบเงียบกริบหลังมีปากเสียง"
+      },
+      behavior: {
+        FR: "Votre partenaire s'emmure dans le silence ('Nging') ou sourit gentiment en changeant de pièce.",
+        EN: "Your partner remains completely silent ('Nging') or smiles gently and leaves the room.",
+        TH: "คู่รักชาวไทยของคุณเลือกที่จะเงียบเฉย ('เงียบ') หรือยิ้มหวานๆ แล้วเดินเลี่ยงไปอีกห้องหนึ่ง"
+      },
+      westernView: {
+        FR: "« Elle m'ignore, refuse le dialogue par froideur ou manipulation passive-agressive. »",
+        EN: "“She is ignoring me, refusing to communicate out of coldness or passive-aggressiveness.”",
+        TH: "“เธอกำลังเพิกเฉยต่อฉัน และปฏิเสธการพูดคุยด้วยความเย็นชาหรือพยายามประชดประชันเงียบๆ”"
+      },
+      realIntent: {
+        FR: "Évitement du conflit ('Jai Yen') pour préserver l'harmonie. Exprimer de la colère brise le respect.",
+        EN: "Conflict avoidance ('Jai Yen') to preserve relationships. Showing open anger breaks moral respect.",
+        TH: "การหลีกเลี่ยงความขัดแย้งเชิงรุก ('ใจเย็น') เพื่อรักษาความสัมพันธ์อันดี การระเบิดอารมณ์โกรธเป็นสิ่งทำลายหน้า"
+      },
+      action: {
+        FR: "Laissez redescendre la pression, parlez calmement sans élever la voix et rassurez-la avec affection.",
+        EN: "Allow the tension to drop, speak with a calm and soft voice, and reassure them with warmth.",
+        TH: "ปล่อยให้เวลาผ่านไปสักพักเพื่อให้จิตใจสงบลง แล้วชวนคุยอย่างอ่อนโยนด้วยน้ำเสียงปกติและแสดงความรัก"
+      }
+    },
+    {
+      title: {
+        FR: "Gêne d'affection en public",
+        EN: "Shyness of public affection",
+        TH: "ความเหนียมอายที่จะแสดงความรักในที่สาธารณะ"
+      },
+      behavior: {
+        FR: "Votre partenaire retire doucement sa main ou refuse que vous l'embrassiez dans la rue.",
+        EN: "Your partner gently pulls their hand away or refuses a kiss on the cheek on the street.",
+        TH: "คนรักของคุณสลัดมือออกเบาๆ หรือไม่ยอมให้คุณหอมแก้มหรือจูบในสถานที่สาธารณะ"
+      },
+      westernView: {
+        FR: "« Elle a honte de moi, ou son affection envers moi n'est pas sincère. »",
+        EN: "“She is ashamed of me, or her feelings towards me are not genuine.”",
+        TH: "“เธออับอายเพราะฉัน หรือความรักของเธอที่มีต่อฉันไม่ได้จริงจังจริงใจ”"
+      },
+      realIntent: {
+        FR: "Respect de la pudeur traditionnelle. L'affection physique est exclusivement réservée à la sphère privée.",
+        EN: "Respect for traditional modesty. Physical affection is sacredly kept inside private spaces.",
+        TH: "การเคารพความสุภาพเรียบร้อยตามประเพณี การแสดงออกทางร่างกายถือเป็นเรื่องที่ต้องเก็บไว้ในที่รโหฐานเท่านั้น"
+      },
+      action: {
+        FR: "Respectez cette pudeur sans vous formaliser. Une simple discrétion en public honore sa famille.",
+        EN: "Respect this boundary without feeling rejected. Discretion in public honors her and her family.",
+        TH: "จงเคารพขอบเขตนี้โดยไม่เก็บมาคิดมาก การสำรวมในที่แจ้งถือเป็นการให้เกียรติวงศ์ตระกูลและตัวเธออย่างยิ่ง"
+      }
+    },
+    {
+      title: {
+        FR: "Jalousie protectrice ('Teung')",
+        EN: "Protective jealousy ('Teung')",
+        TH: "ความหึงหวงปกป้องอย่างรุนแรง ('หึง')"
+      },
+      behavior: {
+        FR: "Une jalousie vive s'exprime si vous parlez longuement ou souriez à d'autres femmes.",
+        EN: "Strong jealousy is expressed when you converse closely or smile at other women.",
+        TH: "คนรักของคุณแสดงความหึงหวงอย่างเห็นได้ชัดเมื่อคุณพูดคุยสนทนาเป็นเวลานานหรือยิ้มแย้มกับผู้หญิงคนอื่น"
+      },
+      westernView: {
+        FR: "« C'est un manque de confiance toxique ou de la possessivité excessive. »",
+        EN: "“This is toxic insecurity or excessive control.”",
+        TH: "“นี่คือการขาดความไว้วางใจที่เป็นพิษหรือการควบคุมบงการที่มากเกินไป”"
+      },
+      realIntent: {
+        FR: "La jalousie ('Teung') est culturellement corrélée à l'intensité de l'engagement et de l'amour sincère.",
+        EN: "Jealousy ('Teung') is culturally correlated with high commitment, attachment, and deep care.",
+        TH: "ความหึงหวง ('หึง') ในบริบทสังคมไทยมักถูกมองว่าเชื่อมโยงและผูกพันกับระดับความรักและความจริงใจที่มีต่อกัน"
+      },
+      action: {
+        FR: "Rassurez-la de manière claire, transparente et douce sur son statut unique à vos yeux.",
+        EN: "Reassure them clearly, transparently, and gently about their unique status in your eyes.",
+        TH: "ให้ความมั่นใจกับเธออย่างชัดเจน โปร่งใส และอ่อนหวานว่าเธอคือคนสำคัญเพียงหนึ่งเดียวในใจคุณ"
+      }
+    }
+  ];
+
+  return (
+    <div className="bg-[#fdfbf7] p-5 rounded-xl border border-[#e5e1da] shadow-xs space-y-4">
+      <div className="flex items-center gap-2 mb-1">
+        <Heart className="text-[#e2b07e] w-5 h-5 fill-[#e2b07e]/20" />
+        <h4 className="font-serif text-base md:text-lg font-bold text-slate-800">{t.title[lang]}</h4>
+      </div>
+      <p className="text-xs md:text-sm text-slate-500 mb-6">{t.subtitle[lang]}</p>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+        {scenarios.map((sc, idx) => (
+          <button
+            key={idx}
+            onClick={() => setActiveScenario(idx)}
+            className={`p-3 rounded-lg border text-left transition-all text-xs font-bold ${
+              activeScenario === idx 
+                ? 'bg-[#e2b07e]/10 border-[#e2b07e] text-[#b88c5e]' 
+                : 'bg-white border-slate-200 text-slate-600 hover:border-[#e2b07e]/40'
+            }`}
+          >
+            {sc.title[lang]}
+          </button>
+        ))}
+      </div>
+
+      <div className="bg-white rounded-xl border border-[#e5e1da] p-4 sm:p-5 space-y-4 shadow-2xs">
+        <div>
+          <span className="text-[10px] uppercase font-bold text-slate-400 block mb-1">{t.behavior[lang]}</span>
+          <p className="text-xs sm:text-sm font-semibold text-slate-800 leading-relaxed bg-[#fdfbf7] p-3 rounded-lg border border-[#e5e1da]/55">
+            {scenarios[activeScenario].behavior[lang]}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="p-3.5 rounded-lg bg-rose-50 border border-rose-100">
+            <span className="text-[10px] uppercase font-bold text-rose-500 block mb-1">{t.westernView[lang]}</span>
+            <p className="text-xs text-rose-800 leading-relaxed italic">
+              {scenarios[activeScenario].westernView[lang]}
+            </p>
+          </div>
+
+          <div className="p-3.5 rounded-lg bg-emerald-50 border border-emerald-100">
+            <span className="text-[10px] uppercase font-bold text-emerald-600 block mb-1">{t.realIntent[lang]}</span>
+            <p className="text-xs text-emerald-800 leading-relaxed font-medium">
+              {scenarios[activeScenario].realIntent[lang]}
+            </p>
+          </div>
+        </div>
+
+        <div className="p-4 rounded-lg bg-amber-50 border border-amber-200/60 flex items-start gap-2.5">
+          <ShieldCheck className="w-5 h-5 text-[#b88c5e] shrink-0 mt-0.5" />
+          <div>
+            <span className="text-[10px] uppercase font-bold text-amber-700 block mb-0.5">{t.action[lang]}</span>
+            <p className="text-xs sm:text-sm text-amber-900 font-medium">
+              {scenarios[activeScenario].action[lang]}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================================
+   MODULE 12: Boussole d'Harmonie Intime (Attentes Sexuelles)
+   ============================================================================ */
+function IntimacyCompass({ lang }: { lang: Language }) {
+  const [activeSphere, setActiveSphere] = useState(0);
+
+  const t = {
+    title: {
+      FR: "Boussole de l'Harmonie Intime",
+      EN: "Intimate Harmony Compass",
+      TH: "เข็มทิศความสอดคล้องเรื่องเพศและชีวิตคู่"
+    },
+    subtitle: {
+      FR: "Explorez les trois dimensions pour harmoniser les attentes intimes et briser les tabous.",
+      EN: "Explore the three dimensions to harmonize intimate expectations and break taboos.",
+      TH: "เรียนรู้ 3 มิติแห่งความแนบแน่นเพื่อปรับแต่งความคาดหวungและทำลายความขัดแย้งทางความคิด"
+    },
+    clumsyTitle: { FR: "Réaction maladroite / Erreur classique", EN: "Clumsy reaction / Classic mistake", TH: "พฤติกรรมที่ไม่เหมาะสม / ข้อผิดพลาดทั่วไป" },
+    harmoniousTitle: { FR: "Approche harmonieuse / Recommandée", EN: "Harmonious approach / Recommended", TH: "พฤติกรรมที่เหมาะสม / วิธีการแนะนำ" },
+  };
+
+  const spheres = [
+    {
+      name: {
+        FR: "Tabou et Dialogue",
+        EN: "Taboos & Dialogue",
+        TH: "ความอายกับการสนทนา"
+      },
+      description: {
+        FR: "Surmonter l'extrême pudeur pour exprimer ses désirs ou insatisfactions sans gêne.",
+        EN: "Overcoming extreme modesty to communicate intimate desires or concerns without shame.",
+        TH: "ก้าวผ่านความเขินอายอย่างยิ่งในการบอกกล่าวสิ่งที่พึงใจหรือไม่สบายใจเพื่อสร้างความผ่อนคลาย"
+      },
+      clumsy: {
+        FR: "Exiger une discussion directe immédiate et pragmatique, ce qui braque et humilie le partenaire thaïlandais.",
+        EN: "Demanding immediate, direct, and graphic discussion, which makes the Thai partner shut down or feel humiliated.",
+        TH: "การเค้นถามอย่างตรงไปตรงมาและพูดจาเปิดเผยอย่างหยาบคาย ซึ่งทำให้คนรักปิดใจและรู้สึกถูกลบหลู่เกียรติ"
+      },
+      harmonious: {
+        FR: "Aborder le sujet indirectement sous l'angle de l'affection, de la sécurité et du bien-être amoureux réciproque.",
+        EN: "Approach the topic indirectly through the prism of mutual care, emotional safety, and physical well-being.",
+        TH: "เปิดประเด็นทางอ้อมด้วยการเน้นย้ำถึงความผูกพัน ความสบายใจ และสุขภาวะที่ดีร่วมกันบนพื้นฐานความรัก"
+      }
+    },
+    {
+      name: {
+        FR: "Signaux Corporels",
+        EN: "Physical Cues",
+        TH: "รหัสสัญญาณทางร่างกาย"
+      },
+      description: {
+        FR: "Savoir déceler les rituels et consentements implicites ou gênes silencieuses.",
+        EN: "Learning to decipher subtle non-verbal cues of consent, desire, or silent reluctance.",
+        TH: "การทำความเข้าใจสัญลักษณ์เงียบและรหัสความประสงค์หรือความไม่สะดวกใจที่แสดงออกทางภาษากาย"
+      },
+      clumsy: {
+        FR: "Considérer que l'absence de verbalisation équivaut à un accord inconditionnel ou au contraire à un désintérêt.",
+        EN: "Assuming the absence of spoken words means automatic consent or, conversely, a complete lack of interest.",
+        TH: "ทึกทักเอาเองว่าความเงียบหรือไม่พูดแปลว่ายอมรับอย่างไร้เงื่อนไข หรือในทางกลับกัน ตีความว่าเธอเบื่อหน่าย"
+      },
+      harmonious: {
+        FR: "Observer attentivement la respiration, la gestuelle, les sourires embarrassés et valider par des câlins doux.",
+        EN: "Watch closely for sighs, body relaxation, bashful smiles, and validate always with tender hugs.",
+        TH: "หมั่นสังเกตอาการผ่อนคลายของกล้ามเนื้อ รอยยิ้มอ้อมแอ้ม และโอบกอดเธออย่างนุ่มนวลเพื่อมอบความอบอุ่นใจ"
+      }
+    },
+    {
+      name: {
+        FR: "Rythme et Fréquence",
+        EN: "Rhythm & Frequency",
+        TH: "จังหวะและความบ่อยครั้ง"
+      },
+      description: {
+        FR: "Trouver un terrain d'entente face à des attentes ou besoins libidinals décalés.",
+        EN: "Finding common ground when facing mismatched physical expectations or libidos.",
+        TH: "การหาจุดกึ่งกลางที่ลงตัวเมื่อมีความสอดคล้องหรือแรงขับทางร่างกายที่แตกต่างและคลาดเคลื่อนกัน"
+      },
+      clumsy: {
+        FR: "Faire culpabiliser le partenaire ou interpréter cela comme un rejet sentimental global.",
+        EN: "Guilt-tripping the partner or interpreting this mismatch as a global romantic rejection.",
+        TH: "การพยายามพูดจาตัดพ้อให้คนรักรู้สึกผิด หรือมองว่านี่คือการปฏิเสธความรักความผูกพันทั้งหมด"
+      },
+      harmonious: {
+        FR: "Favoriser des moments de tendresse pure (massages, paroles) pour renforcer l'intimité et stimuler le désir naturellement.",
+        EN: "Prioritize pure tender moments (massages, sweet words) to naturally build intimacy and desire.",
+        TH: "ให้ความสำคัญกับชั่วโมงแห่งความอ่อนโยน (เช่น การนวดผ่อนคลาย คำชมเชย) เพื่อกระตุ้นความรู้สึกอบอุ่นตามธรรมชาติ"
+      }
+    }
+  ];
+
+  return (
+    <div className="bg-[#fdfbf7] p-5 rounded-xl border border-[#e5e1da] shadow-xs space-y-4">
+      <div className="flex items-center gap-2 mb-1">
+        <Sparkles className="text-[#e2b07e] w-5 h-5 fill-[#e2b07e]/20" />
+        <h4 className="font-serif text-base md:text-lg font-bold text-slate-800">{t.title[lang]}</h4>
+      </div>
+      <p className="text-xs md:text-sm text-slate-500 mb-6">{t.subtitle[lang]}</p>
+
+      <div className="flex border-b border-[#e5e1da] mb-6 overflow-x-auto gap-2">
+        {spheres.map((sp, idx) => (
+          <button
+            key={idx}
+            onClick={() => setActiveSphere(idx)}
+            className={`pb-3.5 px-4 text-xs font-extrabold border-b-2 transition-all whitespace-nowrap cursor-pointer ${
+              activeSphere === idx
+                ? 'border-[#e2b07e] text-[#b88c5e]'
+                : 'border-transparent text-slate-400 hover:text-slate-600'
+            }`}
+          >
+            {sp.name[lang]}
+          </button>
+        ))}
+      </div>
+
+      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-serif italic mb-4">
+        {spheres[activeSphere].description[lang]}
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="bg-rose-50/50 p-4 rounded-xl border border-rose-100 flex flex-col justify-between">
+          <div>
+            <span className="text-[9px] uppercase font-extrabold text-rose-500 block mb-2">{t.clumsyTitle[lang]}</span>
+            <p className="text-xs text-rose-900 leading-relaxed font-semibold">
+              {spheres[activeSphere].clumsy[lang]}
+            </p>
+          </div>
+          <div className="mt-4 text-rose-400 text-right text-base font-extrabold">✕</div>
+        </div>
+
+        <div className="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 flex flex-col justify-between">
+          <div>
+            <span className="text-[9px] uppercase font-extrabold text-emerald-600 block mb-2">{t.harmoniousTitle[lang]}</span>
+            <p className="text-xs text-emerald-900 leading-relaxed font-semibold">
+              {spheres[activeSphere].harmonious[lang]}
+            </p>
+          </div>
+          <div className="mt-4 text-emerald-500 text-right text-base font-extrabold">✓</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+

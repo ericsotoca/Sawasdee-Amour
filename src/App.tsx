@@ -147,9 +147,9 @@ export default function App() {
     prevBtn: { FR: "Module Précédent", EN: "Previous Module", TH: "บทเรียนก่อนหน้า" },
     celebrationTitle: { FR: "Félicitations de l'Académie !", EN: "Academic Graduation Congratulations!", TH: "ขอแสดงความยินดีจากคณะกรรมการสถาบัน!" },
     celebrationBody: {
-      FR: "Vous avez brillamment parcouru et validé l'intégralité des 10 modules éducatifs. Votre certificat de Conseiller en Relations Franco-Thaï est désormais accessible.",
-      EN: "You have successfully completed and validated all 10 educational modules. Your Advisor in Franco-Thai Relations certificate is now available.",
-      TH: "คุณได้ผ่านการศึกษาและแบบทดสอบวัดความรู้ครบทั้ง 10 บทเรียนหลักสูตรเรียบร้อยแล้ว ใบประกาศนียบัตรเกียรติยศของคุณได้รับการปลดล็อกพร้อมออกเอกสารแล้ว"
+      FR: "Vous avez brillamment parcouru et validé l'intégralité des modules éducatifs. Votre certificat de Conseiller en Relations Franco-Thaï est désormais accessible.",
+      EN: "You have successfully completed and validated all educational modules. Your Advisor in Franco-Thai Relations certificate is now available.",
+      TH: "คุณได้ผ่านการศึกษาและแบบทดสอบวัดความรู้ครบทุกบทเรียนหลักสูตรเรียบร้อยแล้ว ใบประกาศนียบัตรเกียรติยศของคุณได้รับการปลดล็อกพร้อมออกเอกสารแล้ว"
     },
     viewCertBtn: { FR: "Voir mon Certificat", EN: "View My Certificate", TH: "เปิดดูใบประกาศนียบัตร" },
     closeBtn: { FR: "Fermer", EN: "Close", TH: "ปิดหน้าต่าง" },
@@ -221,8 +221,8 @@ export default function App() {
             {/* Language Selection Flags (No JP access!) */}
             <div className="flex items-center gap-2">
               <div className="flex gap-1 bg-[#f7f3ed] p-1 rounded-lg border border-[#e5e1da]">
-                {(['FR', 'EN', 'TH'] as Language[]).map((code) => {
-                  const flag = code === 'FR' ? '🇫🇷' : code === 'EN' ? '🇬🇧' : '🇹🇭';
+                {(['TH', 'EN', 'FR'] as Language[]).map((code) => {
+                  const flag = code === 'TH' ? '🇹🇭' : code === 'EN' ? '🇬🇧' : '🇫🇷';
                   return (
                     <button
                       key={code}

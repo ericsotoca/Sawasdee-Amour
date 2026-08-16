@@ -41,13 +41,13 @@ export default function Sidebar({
     certBtn: { FR: "Mon Certificat Académique", EN: "My Academic Certificate", TH: "ประกาศนียบัตรของฉัน" },
     minutes: { FR: "min", EN: "min", TH: "นาที" },
     unlocked: { FR: "Débloqué", EN: "Unlocked", TH: "ปลดล็อกแล้ว" },
-    locked: { FR: "Bloqué (10/10 Requis)", EN: "Locked (10/10 Req.)", TH: "ล็อกอยู่ (ต้องผ่าน 10 บทก่อน)" }
+    locked: { FR: "Bloqué (Tous les Modules Requis)", EN: "Locked (All Modules Req.)", TH: "ล็อกอยู่ (ต้องเรียนครบทุกบทเรียนก่อน)" }
   };
 
   const languages: { code: Language; label: string; flag: string }[] = [
-    { code: 'FR', label: 'Français', flag: '🇫🇷' },
+    { code: 'TH', label: 'ไทย', flag: '🇹🇭' },
     { code: 'EN', label: 'English', flag: '🇬🇧' },
-    { code: 'TH', label: 'ไทย', flag: '🇹🇭' }
+    { code: 'FR', label: 'Français', flag: '🇫🇷' }
   ];
 
   return (

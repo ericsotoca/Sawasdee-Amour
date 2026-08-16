@@ -1530,5 +1530,249 @@ export const lessons: Lesson[] = [
         }
       }
     ]
+  },
+  {
+    id: 11,
+    title: {
+      FR: "Malentendus et Incompréhensions Amoureuses",
+      EN: "Romantic Misunderstandings and Expectation Gaps",
+      TH: "ความเข้าใจผิดและการสื่อสารที่คลาดเคลื่อนในความรัก"
+    },
+    subtitle: {
+      FR: "Décoder le silence amoureux, la jalousie et la pudeur biculturelle",
+      EN: "Decoding romantic silence, jealousy, and bicultural modesty",
+      TH: "ถอดรหัสความเงียบในความรัก ความหึงหวง และความเขินอายสองวัฒนธรรม"
+    },
+    durationMinutes: 15,
+    concepts: [
+      {
+        FR: {
+          title: "Le silence amoureux : pudeur vs désaccord",
+          content: "En France, le silence au sein du couple est souvent interprété négativement (boudage, désaccord caché). En Thaïlande, le silence ('Nging') ou le retrait temporaire est une stratégie d'évitement des conflits visant à protéger la relation. Ce silence est une marque de respect et de pudeur sentimentale, non d'indifférence."
+        },
+        EN: {
+          title: "Silence in Love: Modesty vs Disagreement",
+          content: "In France, silence within a couple is often interpreted negatively (sulking, hidden disagreement). In Thailand, silence ('Nging') or temporary withdrawal is a conflict-avoidance strategy to protect the relationship. This silence represents emotional modesty and respect, not indifference."
+        },
+        TH: {
+          title: "ความเงียบในความรัก: ความเหนียมอาย vs ความไม่ลงรอยกัน",
+          content: "ในฝรั่งเศส ความเงียบในชีวิตคู่มักถูกตีความในแง่ลบ (การบึ้งตึง หรือความไม่พอใจที่ซ่อนอยู่) แต่ในประเทศไทย ความเงียบ ('เงียบ') หรือการนิ่งเฉยชั่วคราวเป็นกลยุทธ์การหลีกเลี่ยงความขัดแย้งเพื่อรักษาความสัมพันธ์ ความเงียบนี้แสดงถึงความเกรงใจและความสำรวมทางอารมณ์ ไม่ใช่ความเย็นชาหรือเพิกเฉย"
+        }
+      },
+      {
+        FR: {
+          title: "Affection en public : pudeur thaïlandaise vs démonstration française",
+          content: "Les couples français manifestent volontiers leur affection en public (s'embrasser, se tenir par la taille). En Thaïlande, la pudeur corporelle reste forte. Se tenir la main est aujourd'hui accepté chez les jeunes, mais s'embrasser sur la bouche en public reste tabou et perçu comme un manque de respect envers la société et la famille de la partenaire."
+        },
+        EN: {
+          title: "Public Affection: Thai modesty vs French romance",
+          content: "French couples readily display affection in public (kissing, holding waists). In Thailand, physical modesty remains strong. Holding hands is now accepted among the youth, but kissing on the mouth in public remains taboo and is viewed as a lack of respect for society and the partner's family."
+        },
+        TH: {
+          title: "การแสดงความรักในที่สาธารณะ: ความสำรวมแบบไทย vs การแสดงออกแบบฝรั่งเศส",
+          content: "คู่รักชาวฝรั่งเศสมักแสดงความรักในที่สาธารณะอย่างเปิดเผย (การจูบ การโอบกอด) แต่ในประเทศไทย ความสำรวมทางกายยังคงสูง การจับมือถือแขนเป็นที่ยอมรับมากขึ้นในกลุ่มคนรุ่นใหม่ แต่การจูบปากในที่สาธารณะยังคงเป็นเรื่องต้องห้ามและถูกมองว่าขาดความเคารพต่อขนบธรรมเนียมและครอบครัวของอีกฝ่าย"
+        }
+      },
+      {
+        FR: {
+          title: "La jalousie ('Teung') et possessivité",
+          content: "En Thaïlande, la jalousie excessive ('Teung') est parfois perçue comme une preuve d'amour intense et d'investissement émotionnel. En Occident, elle est souvent vue comme un signe d'insécurité ou de toxicité. Comprendre cette différence évite de juger trop sévèrement les inquiétudes de son conjoint thaïlandais."
+        },
+        EN: {
+          title: "Jealousy ('Teung') and possessiveness",
+          content: "In Thailand, strong jealousy ('Teung') is sometimes interpreted as a proof of deep love and emotional investment. In the West, it is often viewed as a sign of insecurity or toxic behavior. Understanding this difference prevents judging a Thai partner's anxiety too harshly."
+        },
+        TH: {
+          title: "ความหึงหวง ('หึง') และการแสดงความเป็นเจ้าของ",
+          content: "ในประเทศไทย ความหึงหวงอย่างรุนแรง ('หึง') บางครั้งถูกมองว่าเป็นข้อพิสูจน์ถึงความรักอันลึกซึ้งและการดูแลเอาใจใส่ แต่ในโลกตะวันตก มักถูกมองว่าเป็นสัญญาณของความไม่มั่นคงในใจหรือพฤติกรรมที่เป็นพิษ การเข้าใจความแตกต่างนี้จะช่วยให้ไม่ตัดสินความกังวลของคนรักชาวไทยรุนแรงจนเกินไป"
+        }
+      }
+    ],
+    quiz: [
+      {
+        id: "q11_1",
+        question: {
+          FR: "Comment interpréter le silence ('Nging') d'un partenaire thaï lors d'un désaccord ?",
+          EN: "How should you interpret the silence ('Nging') of a Thai partner during a disagreement?",
+          TH: "ควรตีความความเงียบ ('เงียบ') ของคู่รักชาวไทยอย่างไรเมื่อมีความเห็นไม่ตรงกัน?"
+        },
+        options: {
+          FR: [
+            "Comme de l'indifférence froide ou du mépris.",
+            "Comme une tentative pudique de préserver l'harmonie et d'éviter l'escalade de la colère.",
+            "Comme une acceptation totale de tous vos arguments."
+          ],
+          EN: [
+            "As cold indifference or contempt.",
+            "As a modest attempt to preserve harmony and avoid escalating anger.",
+            "As total agreement with all your arguments."
+          ],
+          TH: [
+            "เป็นการเพิกเฉยอย่างเย็นชาหรือการดูหมิ่น",
+            "เป็นความพยายามอย่างสุภาพในการรักษาความประนีประนอมและเลี่ยงการโต้เถียงด้วยอารมณ์โกรธ",
+            "เป็นการยอมรับเหตุผลทั้งหมดของคุณอย่างสิ้นเชิง"
+          ]
+        },
+        correctIndex: 1,
+        explanation: {
+          FR: "Le silence thaïlandais est une stratégie d'apaisement temporaire. Il vise à calmer le jeu pour protéger la relation et respecter le 'Jai Yen'.",
+          EN: "Thai silence is a temporary calming strategy. It aims to cool down the situation to protect the relationship and honor 'Jai Yen'.",
+          TH: "ความเงียบของคนไทยคือกลยุทธ์การสงบอารมณ์ชั่วคราว มีวัตถุประสงค์เพื่อลดอุณหภูมิความตึงเครียดเพื่อรักษาความสัมพันธ์และรักษากฎ 'ใจเย็น'"
+        }
+      },
+      {
+        id: "q11_2",
+        question: {
+          FR: "Quelle est l'attitude recommandée concernant les démonstrations d'affection publiques en Thaïlande ?",
+          EN: "What is the recommended attitude regarding public displays of affection in Thailand?",
+          TH: "คำแนะนำที่เหมาะสมเกี่ยวกับการแสดงความรักในที่สาธารณะในประเทศไทยคืออะไร?"
+        },
+        options: {
+          FR: [
+            "S'embrasser passionnément sur la bouche partout pour normaliser le romantisme.",
+            "Se limiter à des gestes simples (se tenir la main) et réserver l'intimité au cadre privé.",
+            "Éviter tout contact visuel ou physique, même à l'abri des regards."
+          ],
+          EN: [
+            "Kissing passionately on the mouth everywhere to normalize romance.",
+            "Limiting to simple gestures (holding hands) and keeping intimacy private.",
+            "Avoiding all visual or physical contact, even behind closed doors."
+          ],
+          TH: [
+            "จูบปากอย่างดูดดื่มในทุกที่เพื่อแสดงออกถึงความรักอันทันสมัย",
+            "จำกัดอยู่เพียงการแสดงออกง่ายๆ (เช่น การจับมือ) และเก็บความใกล้ชิดไว้ในพื้นที่ส่วนตัว",
+            "หลีกเลี่ยงการสบตาหรือสัมผัสร่างกายทุกชนิดแม้จะอยู่ลับสายตาคนอื่น"
+          ]
+        },
+        correctIndex: 1,
+        explanation: {
+          FR: "La société thaïlandaise valorise la retenue corporelle en public. Une affection discrète témoigne d'un grand respect pour la culture locale et la famille.",
+          EN: "Thai society values physical modesty in public. Discretion in public displays of affection shows deep respect for local culture and family values.",
+          TH: "สังคมไทยให้คุณค่ากับการสำรวมร่างกายในที่สาธารณะ การแสดงความรักอย่างมีขอบเขตและให้เกียรติสถานที่แสดงถึงความเคารพต่อวัฒนธรรมท้องถิ่นและครอบครัว"
+        }
+      }
+    ]
+  },
+  {
+    id: 12,
+    title: {
+      FR: "Intimité Sexuelle et Différences d'Attentes",
+      EN: "Sexual Intimacy and Divergent Expectations",
+      TH: "ชีวิตคู่ที่แนบแน่นและความต่างของความคาดหวังทางเพศ"
+    },
+    subtitle: {
+      FR: "Naviguer entre pudeur traditionnelle, éducation sexuelle et harmonie des désirs",
+      EN: "Navigating between traditional modesty, sex education, and harmony of desires",
+      TH: "การจัดการระหว่างความอายตามธรรมเนียม เพศศึกษา และความสอดคล้องของแรงปรารถนา"
+    },
+    durationMinutes: 15,
+    concepts: [
+      {
+        FR: {
+          title: "Pudeur et éducation sexuelle : les non-dits",
+          content: "L'éducation sexuelle en Thaïlande reste très conservatrice et axée sur la pudeur. Contrairement à la France où le plaisir sexuel is discuté de manière plus ouverte et décomplexée, les partenaires thaïlandais peuvent éprouver d'immenses difficultés à exprimer verbalement leurs désirs ou leurs insatisfactions par peur d'être jugés impolis ou immodestes."
+        },
+        EN: {
+          title: "Modesty and Sex Education: The Unspoken Words",
+          content: "Sex education in Thailand remains very conservative and focused on modesty. Unlike France, where sexual pleasure is discussed more openly and without complex, Thai partners may experience immense difficulty expressing their desires or dissatisfactions verbally, fearing they might be judged as impolite or immodest."
+        },
+        TH: {
+          title: "ความเขินอายและเพศศึกษา: สิ่งที่ไม่มีการเอ่ยปาก",
+          content: "เพศศึกษาและการพูดคุยเรื่องเพศในประเทศไทยยังคงค่อนข้างเป็นไปในทางอนุรักษนิยมและเน้นความสำรวม ต่างจากประเทศฝรั่งเศสที่ความสุขทางเพศถูกอภิปรายอย่างเปิดเผยและเป็นเรื่องปกติ คู่รักชาวไทยอาจรู้สึกอึดอัดหรือยากลำบากอย่างยิ่งในการสื่อสารความต้องการหรือความไม่พอใจในเรื่องนี้ตรงๆ เพราะกลัวถูกมองว่าก้าวร้าวหรือไม่เรียบร้อย"
+        }
+      },
+      {
+        FR: {
+          title: "L'art de l'insinuation et des signaux indirects",
+          content: "Faute de communication directe, le partenaire thaïlandais s'appuiera souvent sur des indices subtils et non verbaux pour exprimer son accord ou sa réticence. Le partenaire français doit apprendre à lire ces signaux émotionnels et corporels (mouvements, sourires embarrassés, ton de la voix) plutôt que d'attendre un refus explicite."
+        },
+        EN: {
+          title: "The Art of Insinuation and Indirect Signals",
+          content: "In the absence of direct communication, a Thai partner will often rely on subtle, non-verbal cues to express consent, desire, or reluctance. The French partner must learn to read these emotional and physical signals (movements, shy smiles, voice pitch) rather than expecting explicit verbal feedback."
+        },
+        TH: {
+          title: "ศิลปะแห่งการส่งสัญญาณอ้อมและสัญญาณทางร่างกาย",
+          content: "เมื่อไม่มีการสื่อสารตรงๆ คู่รักชาวไทยมักอาศัยร่องรอยที่ละเอียดอ่อนและสัญลักษณ์ทางร่างกายเพื่อแสดงการตอบรับหรือปฏิเสธ คู่รักชาวฝรั่งเศสต้องเรียนรู้ที่จะถอดรหัสสัญญาณทางอารมณ์และภาษากายเหล่านี้ (เช่น ท่าทีที่เปลี่ยนไป รอยยิ้มอ้อมแอ้ม น้ำเสียง) มากกว่าที่จะรอฟังคำพูดปฏิเสธแบบตรงตัว"
+        }
+      },
+      {
+        FR: {
+          title: "Harmoniser les attentes et surmonter les tabous",
+          content: "Créer un espace de sécurité émotionnelle sans jugement est la clé pour surmonter les tabous. Discuter de l'intimité sous l'angle du bien-être mutuel et de l'amour sincère permet de dissiper la gêne. Le partenaire français doit faire preuve de patience, d'écoute attentive et de douceur communicative."
+        },
+        EN: {
+          title: "Harmonizing Expectations and Overcoming Taboos",
+          content: "Creating a safe, judgment-free emotional space is key to overcoming cultural taboos. Framing discussions about intimacy around mutual well-being and sincere love helps dissipate awkwardness. The Western partner should display patience, active listening, and communicative warmth."
+        },
+        TH: {
+          title: "การประสานความคาดหวังและข้ามผ่านข้อห้ามทางความคิด",
+          content: "การสร้างพื้นที่ปลอดภัยทางอารมณ์ที่ปราศจากการตัดสินคือหัวใจสำคัญในการเอาชนะข้อห้ามทางวัฒนธรรม การพูดคุยเรื่องความใกล้ชิดในแง่มุมของสุขภาวะที่ดีร่วมกันและความรักที่จริงใจจะช่วยขจัดความเคอะเขินลงได้ คู่รักชาวฝรั่งเศสต้องอาศัยความอดทน การตั้งใจฟัง และการแสดงออกที่อ่อนโยนและนุ่มนวล"
+        }
+      }
+    ],
+    quiz: [
+      {
+        id: "q12_1",
+        question: {
+          FR: "Pourquoi un partenaire thaïlandais peut-il hésiter à parler ouvertement de ses préférences intimes ?",
+          EN: "Why might a Thai partner hesitate to speak openly about intimacy preferences?",
+          TH: "ทำไมคู่รักชาวไทยจึงอาจลังเลที่จะพูดคุยเกี่ยวกับรสนิยมหรือความต้องการส่วนตัวเรื่องบนเตียงอย่างเปิดเผย?"
+        },
+        options: {
+          FR: [
+            "Parce que cela ne l'intéresse absolument pas.",
+            "En raison d'une éducation traditionnelle valorisant la pudeur extrême et évitant ces sujets.",
+            "Parce qu'il considère cela comme un sujet purement administratif."
+          ],
+          EN: [
+            "Because they are absolutely not interested in it.",
+            "Due to traditional education valuing extreme modesty and avoiding such conversations.",
+            "Because they consider it a purely administrative subject."
+          ],
+          TH: [
+            "เพราะพวกเขาไม่มีความสนใจในเรื่องนี้เลยแม้แต่น้อย",
+            "เนื่องจากการได้รับการอบรมสั่งสอนแบบดั้งเดิมที่เน้นเรื่องความรักนวลสงวนตัวอย่างยิ่งและเลี่ยงการพูดเรื่องเพศ",
+            "เพราะคิดว่าเป็นเพียงหัวข้อทางธุรการเท่านั้น"
+          ]
+        },
+        correctIndex: 1,
+        explanation: {
+          FR: "La pudeur sociale thaïlandaise s'applique fortement à la sphère intime. En faire un sujet décomplexé demande du temps et un climat de sécurité absolue.",
+          EN: "Thai social modesty applies strongly to the intimate sphere. Turning it into an open, comfortable subject requires time and absolute emotional safety.",
+          TH: "ความสุภาพสำรวมตามสังคมไทยครอบคลุมอย่างมากถึงเรื่องส่วนตัว การแปรเปลี่ยนให้เป็นหัวข้อสนทนาที่ผ่อนคลายและปลอดภัยจึงต้องอาศัยระยะเวลาและความไว้ใจขั้นสูงสุด"
+        }
+      },
+      {
+        id: "q12_2",
+        question: {
+          FR: "Comment le conjoint occidental doit-il réagir s'il ressent une différence d'attentes sexuelles ?",
+          EN: "How should the Western spouse react if they sense a difference in sexual expectations?",
+          TH: "คู่รักชาวตะวันตกควรตอบสนองอย่างไรเมื่อสังเกตพบความแตกต่างของความคาดหวังในเรื่องเพศ?"
+        },
+        options: {
+          FR: [
+            "Insister lourdement jusqu'à obtenir entière satisfaction.",
+            "Créer un espace de dialogue patient, sans reproche, fondé sur le bien-être réciproque.",
+            "Ignorer complètement le sujet pour éviter tout malaise biculturel."
+          ],
+          EN: [
+            "Insisting heavily until getting full satisfaction.",
+            "Creating a patient, blame-free dialogue space centered on mutual well-being.",
+            "Ignoring the subject entirely to avoid bicultural awkwardness."
+          ],
+          TH: [
+            "คะยั้นคะยอหรือกดดันอย่างต่อเนื่องเพื่อให้ได้ตามใจตนเอง",
+            "สร้างพื้นที่การสนทนาอย่างอดทน ปราศจากการติติง และยึดสุขภาวะที่ดีร่วมกันเป็นหลัก",
+            "แกล้งทำเป็นมองข้ามเรื่องนี้ไปเลยเพื่อหลีกเลี่ยงความเคอะเขินสองวัฒนธรรม"
+          ]
+        },
+        correctIndex: 1,
+        explanation: {
+          FR: "Le dialogue bienveillant, l'écoute des signaux subtils et l'absence de jugement permettent d'harmoniser les désirs tout en douceur.",
+          EN: "Kind dialogue, listening to subtle cues, and avoiding judgment allow for a gentle harmonization of desires over time.",
+          TH: "การพูดคุยที่เปี่ยมด้วยความหวังดี การสังเกตและใส่ใจภาษากายที่ละเอียดอ่อน และการไม่ตำหนิตัดสิน จะช่วยให้สามารถปรับความต้องการเข้าหากันได้อย่างนุ่มนวล"
+        }
+      }
+    ]
   }
 ];
