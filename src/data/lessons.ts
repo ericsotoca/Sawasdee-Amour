@@ -1774,5 +1774,510 @@ export const lessons: Lesson[] = [
         }
       }
     ]
+  },
+  {
+    id: 13,
+    title: {
+      FR: "Les Attentes financières à long terme",
+      EN: "Long-term Family Financial Expectations",
+      TH: "ความคาดหวังเรื่องเงินของครอบครัวในระยะยาว"
+    },
+    subtitle: {
+      FR: "Comprendre les devoirs envers les parents et la gestion de la sécurité commune",
+      EN: "Understanding duties to parents and managing joint security",
+      TH: "การทำความเข้าใจหน้าที่ดูแลบุพการีและการบริหารความปลอดภัยร่วมกัน"
+    },
+    durationMinutes: 15,
+    concepts: [
+      {
+        FR: {
+          title: "Le soutien financier filial en Thaïlande",
+          content: "En Thaïlande, envoyer de l'argent régulièrement à ses parents n'est pas vu comme une contrainte ou de l'exploitation, mais comme un acte sacré de gratitude ('Katanyu'). C'est un devoir moral pour compenser les sacrifices des parents."
+        },
+        EN: {
+          title: "Filial Financial Support in Thailand",
+          content: "In Thailand, sending money regularly to parents is not viewed as a burden or exploitation, but as a sacred act of gratitude ('Katanyu'). It is a moral duty to repay parents for their sacrifices."
+        },
+        TH: {
+          title: "การเกื้อกูลเงินแก่ครอบครัว: ความกตัญญู",
+          content: "ในประเทศไทย การส่งเงินให้พ่อแม่เป็นประจำไม่ได้ถูกมองว่าเป็นภาระหรือการถูกเอาเปรียบ แต่เป็นสัญลักษณ์อันศักดิ์สิทธิ์ของความกตัญญูกตเวทิตา ซึ่งเป็นหน้าที่ทางศีลธรรมเพื่อทดแทนพระคุณผู้มีพระภาค"
+        }
+      }
+    ],
+    quiz: [
+      {
+        id: "q13_1",
+        question: {
+          FR: "Qu'est-ce que le devoir de 'Katanyu' ?",
+          EN: "What is the duty of 'Katanyu'?",
+          TH: "หน้าที่กตัญญู (Katanyu) คืออะไร?"
+        },
+        options: {
+          FR: [
+            "Un impôt gouvernemental obligatoire.",
+            "Un acte sacré de gratitude et d'aide financière envers ses parents.",
+            "Une simple tradition de fête de fin d'année."
+          ],
+          EN: [
+            "A compulsory government tax.",
+            "A sacred act of gratitude and financial support towards one's parents.",
+            "A simple end-of-year holiday tradition."
+          ],
+          TH: [
+            "ภาษีบังคับจากรัฐบาล",
+            "การแสดงความกตัญญูและการเกื้อหนุนทางการเงินต่อบิดามารดาเพื่อทดแทนคุณ",
+            "ประเพณีเฉลิมฉลองธรรมดาช่วงท้ายปี"
+          ]
+        },
+        correctIndex: 1,
+        explanation: {
+          FR: "La gratitude envers les parents est un pilier de la morale bouddhiste et sociale thaïlandaise.",
+          EN: "Gratitude to parents is a pillar of Buddhist and social morality in Thailand.",
+          TH: "ความกตัญญูต่อบิดามารดาเป็นเสาหลักทางศีลธรรมของพุทธศาสนิกชนและสังคมไทย"
+        }
+      }
+    ]
+  },
+  {
+    id: 14,
+    title: {
+      FR: "Le Kreng Jai & Non-dit relationnel",
+      EN: "Kreng Jai & Relationship Non-verbalism",
+      TH: "ความเกรงใจและสิ่งที่ไม่เอ่ยปากในชีวิตคู่"
+    },
+    subtitle: {
+      FR: "L'art de ne pas imposer ses désirs et d'éviter d'importuner l'autre",
+      EN: "The art of not imposing desires and avoiding imposing on others",
+      TH: "ศิลปะแห่งการไม่ยัดเยียดความต้องการและหลีกเลี่ยงการรบกวนจิตใจผู้อื่น"
+    },
+    durationMinutes: 12,
+    concepts: [
+      {
+        FR: {
+          title: "Le concept central de Kreng Jai",
+          content: "Le 'Kreng Jai' désigne l'extrême considération pour les sentiments d'autrui, se traduisant par la réticence à demander de l'aide ou à exprimer un désaccord de peur de déranger ou de créer un inconfort chez l'autre."
+        },
+        EN: {
+          title: "The Central Concept of Kreng Jai",
+          content: "'Kreng Jai' represents extreme consideration for other people's feelings, leading to reluctance to ask for help or voice disagreements to avoid imposing or causing discomfort."
+        },
+        TH: {
+          title: "แนวคิดหลักเรื่อง 'ความเกรงใจ'",
+          content: "ความเกรงใจคือการคำนึงถึงความรู้สึกของผู้อื่นอย่างสูงที่สุด ส่งผลให้หลีกเลี่ยงการร้องขอความช่วยเหลือหรือแสดงความไม่เห็นด้วยโดยไม่จำเป็น เพื่อป้องกันการสร้างความรำคาญใจ"
+        }
+      }
+    ],
+    quiz: [
+      {
+        id: "q14_1",
+        question: {
+          FR: "Comment se manifeste le 'Kreng Jai' dans un couple ?",
+          EN: "How does 'Kreng Jai' manifest in a couple?",
+          TH: "ความเกรงใจแสดงออกในชีวิตคู่ได้อย่างไร?"
+        },
+        options: {
+          FR: [
+            "Par des demandes autoritaires constantes.",
+            "Par des non-dits et une hésitation à exprimer ses propres besoins par respect pour le conjoint.",
+            "Par un manque de respect mutuel complet."
+          ],
+          EN: [
+            "Through constant demanding commands.",
+            "Through non-verbal cues and hesitation to voice needs out of respect for the spouse.",
+            "Through complete mutual disrespect."
+          ],
+          TH: [
+            "การออกคำสั่งบังคับอย่างสม่ำเสมอ",
+            "การไม่พูดสิ่งที่เป็นปัญหาและการลังเลที่จะรบกvenคู่รักเพราะความเกรงใจ",
+            "การขาดความเคารพต่อกันโดยสิ้นเชิง"
+          ]
+        },
+        correctIndex: 1,
+        explanation: {
+          FR: "Le partenaire thaïlandais préfère souvent garder un problème pour lui plutôt que d'importuner son conjoint français.",
+          EN: "A Thai partner often prefers to keep problems to themselves to avoid bothering their Western partner.",
+          TH: "คู่รักชาวไทยมักเลือกเก็บความทุกข์หรือปัญหาไว้ลำพังมากกว่าจะเอ่ยปากรบกวนให้คนรักต้องเป็นกังวล"
+        }
+      }
+    ]
+  },
+  {
+    id: 15,
+    title: {
+      FR: "Les Rituels et Mariage Traditionnel",
+      EN: "Wedding Rituals & Religious Ceremonies",
+      TH: "พิธีแต่งงานแบบดั้งเดิมและธรรมเนียมสงฆ์"
+    },
+    subtitle: {
+      FR: "Comprendre les rites sacrés, le mérite bouddhiste et la bénédiction",
+      EN: "Understanding sacred rites, Buddhist merit, and blessings",
+      TH: "การทำความเข้าใจพิธีกรรมอันศักดิ์สิทธิ์ การทำบุญตักบาตร และการรับพร"
+    },
+    durationMinutes: 15,
+    concepts: [
+      {
+        FR: {
+          title: "La cérémonie de bénédiction des moines",
+          content: "Un mariage traditionnel thaïlandais intègre souvent une bénédiction par des moines bouddhistes tôt le matin pour accumuler du mérite ('Faire du mérite' ou 'Tham Bun') et assurer un avenir serein au couple."
+        },
+        EN: {
+          title: "The Monk Blessing Ceremony",
+          content: "A traditional Thai wedding often features a blessing by Buddhist monks early in the morning to make merit ('Tham Bun') and ensure a harmonious and prosperous marriage."
+        },
+        TH: {
+          title: "พิธีมงคลสมรสและพิธีสงฆ์",
+          content: "การแต่งงานแบบไทยดั้งเดิมมักรวมการทำบุญตักบาตรและการรับพรอันศักดิ์สิทธิ์จากพระสงฆ์ในช่วงเช้าตรู่เพื่อเป็นสิริมงคลในการเริ่มต้นชีวิตคู่"
+        }
+      }
+    ],
+    quiz: [
+      {
+        id: "q15_1",
+        question: {
+          FR: "Quel est le but de la cérémonie religieuse du mariage en Thaïlande ?",
+          EN: "What is the purpose of the wedding religious ceremony in Thailand?",
+          TH: "วัตถุประสงค์ของพิธีสงฆ์ในการแต่งงานของไทยคืออะไร?"
+        },
+        options: {
+          FR: [
+            "C'est une simple formalité sans importance pour la famille.",
+            "Accumuler du mérite spirituel (Tham Bun) et attirer les bénédictions sur le nouveau couple.",
+            "Obtenir un document officiel pour le consulat étranger."
+          ],
+          EN: [
+            "It is a simple formality with no real impact on families.",
+            "To accumulate spiritual merit (Tham Bun) and call blessings upon the newlyweds.",
+            "To get an official document for the foreign embassy."
+          ],
+          TH: [
+            "เป็นเพียงขั้นตอนตามพิธีการที่ไม่มีความสำคัญต่อครอบครัว",
+            "การทำบุญตักบาตรเพื่อสะสมส่วนบุญ (ทำบุญ) และเสริมความเป็นสิริมงคลแก่คู่บ่าวสาว",
+            "เพื่อรับเอกสารราชการไปยื่นต่อสถานทูตต่างประเทศ"
+          ]
+        },
+        correctIndex: 1,
+        explanation: {
+          FR: "La bénédiction des moines est essentielle pour rassurer la famille sur le sérieux spirituel de l'union.",
+          EN: "The monks' blessing is essential to reassure the family of the spiritual validity of the marriage.",
+          TH: "พิธีเจริญพระพุทธมนต์มีความสำคัญอย่างยิ่งในการให้ความมั่นใจแก่ครอบครัวในความมั่นคงทางจิตใจของคู่บ่าวสาว"
+        }
+      }
+    ]
+  },
+  {
+    id: 16,
+    title: {
+      FR: "Communication indirecte avancée",
+      EN: "Advanced Indirect Communication Cues",
+      TH: "การสื่อสารทางอ้อมขั้นสูงและการบอกใบ้ทางอารมณ์"
+    },
+    subtitle: {
+      FR: "Interpréter les sous-entendus, les expressions faciales et le ton",
+      EN: "Interpreting subtexts, facial expressions, and vocal tones",
+      TH: "การตีความนัยความหมาย สีหน้า และน้ำเสียงระดับลึก"
+    },
+    durationMinutes: 12,
+    concepts: [
+      {
+        FR: {
+          title: "L'art de lire entre les lignes biculturelles",
+          content: "Dans les cultures à haut contexte comme la Thaïlande, ce qui n'est pas dit a autant de valeur que ce qui est dit. Un sourire gêné peut cacher une désapprobation, et un 'Mai Pen Rai' répété avec un ton sec peut signaler un vrai malaise."
+        },
+        EN: {
+          title: "The Art of Reading Between Bicultural Lines",
+          content: "In high-context cultures like Thailand, what is left unsaid has as much meaning as spoken words. A bashful smile might conceal disapproval, and a tense 'Mai Pen Rai' might signal true emotional distress."
+        },
+        TH: {
+          title: "ศิลปะแห่งการอ่านความรู้สึกและนัยสำคัญ",
+          content: "ในวัฒนธรรมแบบบริบทสูงของไทย สิ่งที่ไม่ระบุตรงๆ มีความสำคัญเทียบเท่ากับคำพูด รอยยิ้มเจื่อนๆ อาจซ่อนความกังวลใจ และคำว่า 'ไม่เป็นไร' ด้วยน้ำเสียงเรียบนิ่งอาจหมายถึงปัญหายิ่งใหญ่"
+        }
+      }
+    ],
+    quiz: [
+      {
+        id: "q16_1",
+        question: {
+          FR: "Que peut cacher un 'Mai Pen Rai' prononcé avec un ton inhabituel ?",
+          EN: "What can a 'Mai Pen Rai' pronounced with an unusual tone hide?",
+          TH: "คำว่า 'ไม่เป็นไร' ด้วยน้ำเสียงที่ผิดปกติอาจแฝงด้วยสิ่งใด?"
+        },
+        options: {
+          FR: [
+            "Une joie immense et incontrôlable.",
+            "Une contrariété réelle que le partenaire n'ose pas exprimer directement par politesse.",
+            "Une demande pressante de cadeau."
+          ],
+          EN: [
+            "Immense, uncontrollable joy.",
+            "True annoyance that the partner does not dare express directly due to politeness.",
+            "An urgent request for a gift."
+          ],
+          TH: [
+            "ความสุขท่วมท้นใจจนอธิบายไม่ได้",
+            "ความรู้สึกไม่สบายใจหรือความโกรธที่คู่รักไม่กล้าเอ่ยอย่างตรงไปตรงมาเพื่อรักษาน้ำใจ",
+            "ความต้องการอยากได้ของขวัญอย่างเร่งด่วน"
+          ]
+        },
+        correctIndex: 1,
+        explanation: {
+          FR: "Le ton de la voix et le langage corporel sont capitaux pour déceler les émotions cachées derrière les expressions de courtoisie.",
+          EN: "Tone of voice and body language are key to detecting hidden feelings behind polite phrases.",
+          TH: "น้ำเสียงและภาษากายคือหัวใจสำคัญในการมองเห็นความรู้สึกที่แท้จริงภายใต้หน้ากากแห่งความสุภาพ"
+        }
+      }
+    ]
+  },
+  {
+    id: 17,
+    title: {
+      FR: "Éducation des Enfants Biculturels",
+      EN: "Raising Bicultural & Bilingual Kids",
+      TH: "การเลี้ยงดูลูกสองภาษาและสองวัฒนธรรม"
+    },
+    subtitle: {
+      FR: "Négocier la double culture, le bilinguisme précoce et l'identité",
+      EN: "Negotiating dual heritage, early bilingualism, and identity",
+      TH: "การตกลงใจร่วมกันเรื่องมรดกสองวัฒนธรรม ภาษา และอัตลักษณ์ของลูก"
+    },
+    durationMinutes: 15,
+    concepts: [
+      {
+        FR: {
+          title: "Transmettre deux identités de manière égale",
+          content: "Élever des enfants franco-thaïlandais requiert un accord clair sur l'apprentissage simultané des deux langues. Parler français et thaï au quotidien évite que l'enfant ne se sente déconnecté de l'une de ses deux familles."
+        },
+        EN: {
+          title: "Transmitting Dual Identity Equally",
+          content: "Raising Franco-Thai children requires a clear agreement on simultaneous language acquisition. Speaking both French and Thai daily prevents the child from feeling disconnected from either side of their family."
+        },
+        TH: {
+          title: "การถ่ายทอดอัตลักษณ์สองวัฒนธรรมอย่างสมดุล",
+          content: "การเลี้ยงดูลูกครึ่งไทย-ฝรั่งเศสต้องอาศัยข้อตกลงเรื่องการเรียนรู้สองภาษา การใช้ภาษาของพ่อแม่ทั้งสองฝ่ายในชีวิตประจำวันเพื่อความผูกพันที่มั่นคงกับทั้งสองครอบครัว"
+        }
+      }
+    ],
+    quiz: [
+      {
+        id: "q17_1",
+        question: {
+          FR: "Quelle est la meilleure approche pour encourager le bilinguisme d'un enfant biculturel ?",
+          EN: "What is the best approach to foster bilingualism in a bicultural child?",
+          TH: "วิธีที่ดีที่สุดในการส่งเสริมสองภาษาให้กับลูกครึ่งคืออะไร?"
+        },
+        options: {
+          FR: [
+            "N'enseigner qu'une seule langue pour ne pas fatiguer le cerveau.",
+            "Que chaque parent parle exclusivement sa langue maternelle à l'enfant au quotidien (méthode OPOL).",
+            "Attendre l'âge de 10 ans pour commencer l'apprentissage."
+          ],
+          EN: [
+            "Teaching only one language to avoid overwhelming the child.",
+            "Having each parent speak exclusively their native language to the child daily (OPOL method).",
+            "Waiting until age 10 to start learning the second language."
+          ],
+          TH: [
+            "สอนเพียงภาษาเดียวเพื่อไม่ให้สมองของเด็กทำงานหนักเกินไป",
+            "ให้พ่อและแม่พูดภาษาแม่ของตนเองกับลูกอย่างสม่ำเสมอในชีวิตประจำวัน (ระบบ OPOL)",
+            "รอจนกว่าลูกจะอายุครบ 10 ปีค่อยเริ่มสอนภาษาที่สอง"
+          ]
+        },
+        correctIndex: 1,
+        explanation: {
+          FR: "La méthode OPOL (One Parent One Language) est scientifiquement reconnue comme l'une des plus efficaces pour le bilinguisme de l'enfant.",
+          EN: "The OPOL method (One Parent One Language) is scientifically proven to be highly effective for natural bilingualism.",
+          TH: "วิธีการพูดคนละภาษากับลูก (OPOL) ได้รับการรับรองทางวิทยาศาสตร์ว่ามีประสิทธิภาพสูงสุดในการสร้างทักษะสองภาษาตามธรรมชาติ"
+        }
+      }
+    ]
+  },
+  {
+    id: 18,
+    title: {
+      FR: "Démarches Administratives et Visas",
+      EN: "Administrative Visas & Relocation Laws",
+      TH: "ขั้นตอนเอกสารราชการ วีซ่า และการสมรส"
+    },
+    subtitle: {
+      FR: "Comprendre les visas, le mariage légal et l'établissement permanent",
+      EN: "Understanding visas, legal marriage, and permanent residency",
+      TH: "ความเข้าใจเรื่องกฎหมายตรวจคนเข้าเมือง การสมรสตามกฎหมาย และสิทธิ์ถิ่นที่อยู่"
+    },
+    durationMinutes: 20,
+    concepts: [
+      {
+        FR: {
+          title: "La lourdeur des démarches administratives",
+          content: "L'administration biculturelle (transcription de mariage, demande de visa de conjoint de Français, visas thaïlandais de longue durée) est longue et complexe. Elle exige de la rigueur, de la patience et la préparation scrupuleuse de dossiers."
+        },
+        EN: {
+          title: "The Weight of Administrative Processes",
+          content: "Bicultural administration (marriage transcripts, French spouse visas, Thai long-term stay visas) is long and complex. It demands high dedication, patience, and meticulous file preparation."
+        },
+        TH: {
+          title: "ความรับผิดชอบเรื่องเอกสารราชการและขั้นตอนวีซ่า",
+          content: "กระบวนการเอกสารราชการระหว่างประเทศ (เช่น การจดทะเบียนสมรส วีซ่าคู่สมรสฝรั่งเศส วีซ่าพำนักระยะยาวในไทย) มีความซับซ้อนและต้องใช้เวลา ต้องอาศัยความอดทนและการเตรียมเอกสารที่สมบูรณ์"
+        }
+      }
+    ],
+    quiz: [
+      {
+        id: "q18_1",
+        question: {
+          FR: "Quel état d'esprit est requis face aux dossiers administratifs franco-thaïlandais ?",
+          EN: "What mindset is required when dealing with Franco-Thai administrative files?",
+          TH: "ทัศนคติแบบใดที่จำเป็นต้องมีเมื่อเผชิญกับขั้นตอนเอกสารราชการระหว่างไทย-ฝรั่งเศส?"
+        },
+        options: {
+          FR: [
+            "La précipitation et le mécontentement permanent.",
+            "La patience, l'organisation rigoureuse des dossiers officiels et l'anticipation des délais légaux.",
+            "Ignorer les règles et s'en remettre entièrement à la chance."
+          ],
+          EN: [
+            "Haste and constant complaints.",
+            "Patience, rigorous preparation of official documents, and anticipation of processing times.",
+            "Ignoring guidelines and relying entirely on luck."
+          ],
+          TH: [
+            "ความเร่งรีบและการบ่นต่อต้านระบบราชการตลอดเวลา",
+            "ความอดทน การวางแผนระบบจัดเก็บเอกสาร และการเผื่อเวลารอคอยตามข้อกำหนดกฎหมาย",
+            "ละเลยกฎระเบียบและหวังพึ่งโชคชะตาเพียงอย่างเดียว"
+          ]
+        },
+        correctIndex: 1,
+        explanation: {
+          FR: "Les délais légaux ne peuvent pas être raccourcis. Être méthodique et zen est la clé du succès administratif.",
+          EN: "Legal processing delays cannot be speeded up. Being methodical and calm is key to administrative success.",
+          TH: "เวลาในกระบวนการพิจารณาเป็นกฎเกณฑ์ทางกฎหมาย การรักษาระเบียบและความสุภาพมีส่วนช่วยอย่างมากในความสำเร็จทางเอกสาร"
+        }
+      }
+    ]
+  },
+  {
+    id: 19,
+    title: {
+      FR: "Gestion des demandes d'aide familiales",
+      EN: "Handling Extended Family Financial Requests",
+      TH: "การจัดการคำขอความช่วยเหลือทางการเงินจากญาติ"
+    },
+    subtitle: {
+      FR: "Poser des limites saines tout en respectant l'esprit d'entraide communautaire",
+      EN: "Setting healthy boundaries while respecting community support norms",
+      TH: "การวางขอบเขตที่เหมาะสมไปพร้อมกับการรักษาความเอื้ออารีของครอบครัว"
+    },
+    durationMinutes: 15,
+    concepts: [
+      {
+        FR: {
+          title: "Établir des frontières financières claires et respectueuses",
+          content: "L'entraide familiale élargie est courante en Thaïlande. Pour préserver l'équilibre financier du couple biculturel, il est essentiel de discuter ensemble d'un budget maximum d'aide mensuelle ou d'un fonds d'urgence sans que le conjoint thaï ne perde la face."
+        },
+        EN: {
+          title: "Setting Clear & Respectful Financial Boundaries",
+          content: "Extended family mutual support is highly common in Thailand. To protect the bicultural couple's finances, it is vital to discuss and agree upon a fixed maximum monthly help or emergency fund, preserving the Thai spouse's dignity."
+        },
+        TH: {
+          title: "การวางขอบเขตความเกื้อกูลอย่างสมเหตุสมผลและให้เกียรติ",
+          content: "การช่วยเหลือญาติพี่น้องขยายตัวเป็นประเพณีในสังคมไทย เพื่อรักษาสมดุลความมั่นคงของชีวิตคู่สองวัฒนธรรม จึงควรพูดคุยทำความเข้าใจร่วมกันเกี่ยวกับวงเงินจำกัดหรือการจัดสรรกองทุนช่วยเหลือฉุกเฉินอย่างโปร่งใส"
+        }
+      }
+    ],
+    quiz: [
+      {
+        id: "q19_1",
+        question: {
+          FR: "Comment gérer sereinement les demandes d'aide financière de la belle-famille ?",
+          EN: "How should you calmly handle financial help requests from your in-laws?",
+          TH: "วิธีจัดการคำขอความช่วยเหลือทางการเงินจากครอบครัวฝ่ายไทยอย่างรักษาน้ำใจคืออะไร?"
+        },
+        options: {
+          FR: [
+            "Refuser catégoriquement toute discussion et insulter la belle-famille.",
+            "Discuter en couple pour définir un budget d'entraide fixe et raisonnable, sans compromettre la sécurité du foyer.",
+            "Donner tout son salaire sans compter ni poser aucune question."
+          ],
+          EN: [
+            "Refusing flatly and insulting the in-laws.",
+            "Discussing as a couple to define a fixed and reasonable assistance budget, protecting the household's core savings.",
+            "Giving away your entire salary without tracking or asking questions."
+          ],
+          TH: [
+            "ปฏิเสธอย่างไร้เยื่อใยและแสดงกิริยาก้าวร้าวใส่ครอบครัวแฟน",
+            "พูดคุยสองคนเพื่อกำหนดงบช่วยเหลือรายเดือนที่แน่นอนและไม่กระทบค่าใช้จ่ายหลักของครอบครัว",
+            "มอบเงินทั้งหมดของตนเองให้ทันทีโดยไม่มีคำถามใดๆ"
+          ]
+        },
+        correctIndex: 1,
+        explanation: {
+          FR: "Définir un budget convenu à l'avance rassure le conjoint thaïlandais tout en protégeant les finances du couple.",
+          EN: "Setting an agreed budget in advance reassures the Thai partner while guarding the bicultural household's stability.",
+          TH: "การกำหนดงบประมาณช่วยเหลือล่วงหน้าช่วยให้คู่รักสบายใจและยังรักษาความมั่งคั่งของชีวิตคู่ไว้ได้อย่างมั่นคง"
+        }
+      }
+    ]
+  },
+  {
+    id: 20,
+    title: {
+      FR: "Construire un projet de retraite commun",
+      EN: "Planning a Peaceful Retirement & Lands",
+      TH: "การวางแผนใช้ชีวิตวัยเกษียณและการซื้อที่ดินร่วมกัน"
+    },
+    subtitle: {
+      FR: "Sécuriser les investissements fonciers, l'avenir médical et le bonheur biculturel",
+      EN: "Securing property investments, medical future, and bicultural happiness",
+      TH: "การสร้างความมั่นคงในที่อยู่อาศัย สุขภาพ และความสุขในบั้นปลายชีวิตสองวัฒนธรรม"
+    },
+    durationMinutes: 20,
+    concepts: [
+      {
+        FR: {
+          title: "Planifier l'avenir : droit de propriété et couverture santé",
+          content: "L'achat de terrain en Thaïlande par les étrangers est restreint par la loi. Préparer une retraite sereine implique de connaître les structures juridiques (baux de longue durée, usufruit) et de s'assurer d'une couverture médicale solide pour les deux conjoints."
+        },
+        EN: {
+          title: "Planning the Future: Property Laws & Health Insurance",
+          content: "Land purchase in Thailand by foreigners is heavily restricted by law. Preparing for a smooth retirement requires understanding legal solutions (long-term leases, usufruct) and securing premium medical insurance for both partners."
+        },
+        TH: {
+          title: "แผนเกษียณอายุ: ข้อกำหนดที่ดินและการประกันสุขภาพ",
+          content: "กฎหมายไทยจำกัดสิทธิ์การถือครองที่ดินของชาวต่างชาติ การเตรียมพร้อมรับวันเกษียณจึงต้องศึกษาเรื่องสิทธิเก็บกิน (Usufruct) หรือสัญญาเช่าระยะยาว รวมถึงจัดทำประกันสุขภาพที่ครอบคลุมของทั้งสองฝ่าย"
+        }
+      }
+    ],
+    quiz: [
+      {
+        id: "q20_1",
+        question: {
+          FR: "Quelle précaution est essentielle pour un étranger souhaitant investir dans l'immobilier en Thaïlande ?",
+          EN: "What essential precaution should a foreigner take before investing in properties in Thailand?",
+          TH: "ข้อควรระวังสำคัญที่สุดสำหรับชาวต่างชาติที่ต้องการลงทุนในอสังหาริมทรัพย์ในประเทศไทยคืออะไร?"
+        },
+        options: {
+          FR: [
+            "Acheter des terrains directement sous son nom propre sans consulter de juriste.",
+            "Consulter un avocat qualifié pour utiliser des contrats légaux protecteurs (usufruit, bail longue durée).",
+            "Penser que les lois d'autres pays s'appliquent automatiquement en Thaïlande."
+          ],
+          EN: [
+            "Buying land directly under their own name without consulting a legal professional.",
+            "Consulting an experienced lawyer to establish protective contracts (usufruct, leasehold agreements).",
+            "Assuming foreign property laws apply in Thailand."
+          ],
+          TH: [
+            "พยายามซื้อที่ดินในนามของตนเองตรงๆ โดยไม่มีที่ปรึกษากฎหมาย",
+            "ปรึกษาทนายความผู้เชี่ยวชาญเพื่อจัดทำเอกสารคุ้มครองสิทธิ์ เช่น สิทธิเก็บกิน หรือการเช่าระยะยาว",
+            "ทึกทักเอาเองว่ากฎหมายที่ดินบ้านเกิดของตนจะสามารถนำมาบังคับใช้ในไทยได้"
+          ]
+        },
+        correctIndex: 1,
+        explanation: {
+          FR: "Le cadre juridique thaïlandais est protecteur mais strict. Un conseil juridique professionnel garantit la sécurité de vos investissements de vie.",
+          EN: "Thai legal frameworks are protective yet strict. Professional legal advice secures your life long investments.",
+          TH: "กรอบกฎหมายอสังหาริมทรัพย์ของไทยมีความรัดกุมสูง การรับคำปรึกษาจากนักกฎหมายวิชาชีพช่วยป้องกันปัญหาในบั้นปลายชีวิต"
+        }
+      }
+    ]
   }
 ];
+

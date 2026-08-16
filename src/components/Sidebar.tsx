@@ -1,4 +1,4 @@
-import { Language, Lesson } from '../types';
+import { Language, Lesson, UserRole } from '../types';
 import { Menu, X, BookOpen, GraduationCap, Trophy, HelpCircle, ArrowRight, CheckCircle2, Lock } from 'lucide-react';
 
 interface SidebarProps {
@@ -16,6 +16,8 @@ interface SidebarProps {
   isViewingGlossary: boolean;
   isViewingCertificate: boolean;
   isPremiumUnlocked: boolean;
+  userRole?: UserRole;
+  onRoleChange?: (role: UserRole) => void;
 }
 
 export default function Sidebar({
@@ -32,7 +34,9 @@ export default function Sidebar({
   isCertificateUnlocked,
   isViewingGlossary,
   isViewingCertificate,
-  isPremiumUnlocked
+  isPremiumUnlocked,
+  userRole,
+  onRoleChange
 }: SidebarProps) {
   const progressPercent = Math.round((completedLessons.length / lessons.length) * 100);
 
@@ -94,28 +98,65 @@ export default function Sidebar({
             </button>
           </div>
 
+          {/* Role Selector Card */}
+          {userRole && onRoleChange && (
+            <div className="bg-[#fcfbf9] p-3 rounded-xl border border-[#e5e1da] flex flex-col gap-2 shadow-2xs">
+              <div className="flex justify-between items-center text-[10px] font-bold text-[#a09384] uppercase tracking-widest pl-1">
+                <span>{lang === 'FR' ? 'Perspective' : lang === 'EN' ? 'Perspective' : 'บทบาทผู้เรียน'}</span>
+                <button 
+                  onClick={() => onRoleChange(userRole === 'FEMALE_THAI' ? 'MALE_WESTERN' : 'FEMALE_THAI')}
+                  className="text-[#b88c5e] hover:text-[#e2b07e] font-extrabold text-[9px] uppercase tracking-wider cursor-pointer transition-colors"
+                >
+                  {lang === 'FR' ? 'Changer' : lang === 'EN' ? 'Switch' : 'เปลี่ยน'}
+                </button>
+              </div>
+              <div className="flex items-center gap-2 px-1">
+                <span className="text-lg">{userRole === 'FEMALE_THAI' ? '🌺' : '🌍'}</span>
+                <span className="text-xs font-extrabold text-slate-700">
+                  {userRole === 'FEMALE_THAI' 
+                    ? (lang === 'FR' ? 'Femme Thaïlandaise' : lang === 'EN' ? 'Thai Female Partner' : 'ผู้หญิงไทย')
+                    : (lang === 'FR' ? 'Homme Occidental' : lang === 'EN' ? 'Western Male Partner' : 'ผู้ชายต่างชาติ/ฝรั่งเศส')
+                  }
+                </span>
+              </div>
+            </div>
+          )}
+
           {/* Compact Language Selector (Flag toggles on mobile, labeled on desktop) */}
           <div className="bg-white p-2.5 rounded-xl border border-[#e5e1da] flex justify-between items-center shadow-2xs">
             <span className="text-[10px] font-bold text-[#a09384] uppercase tracking-widest pl-1">
-              Langue
+              {lang === 'FR' ? 'Langue' : lang === 'EN' ? 'Language' : 'ภาษา'}
             </span>
-            <div className="flex gap-1">
-              {languages.map((l) => (
-                <button
-                  key={l.code}
-                  id={`lang-btn-${l.code}`}
-                  onClick={() => onLanguageChange(l.code)}
-                  title={l.label}
-                  className={`px-2 py-1 rounded-md text-sm transition-all flex items-center gap-1 ${
-                    lang === l.code
-                      ? 'bg-[#e2b07e]/15 text-[#b88c5e] font-bold ring-1 ring-[#e2b07e]'
-                      : 'hover:bg-slate-100 text-slate-600'
-                  }`}
-                >
-                  <span className="text-base">{l.flag}</span>
-                  <span className="text-xs font-semibold hidden md:inline">{l.code}</span>
-                </button>
-              ))}
+            <div className="flex gap-1.5">
+              {languages.map((l) => {
+                const isTH = l.code === 'TH';
+                return (
+                  <button
+                    key={l.code}
+                    id={`lang-btn-${l.code}`}
+                    onClick={() => onLanguageChange(l.code)}
+                    title={l.label}
+                    className={`px-2 py-1 rounded-md text-sm transition-all flex items-center gap-1.5 relative ${
+                      lang === l.code
+                        ? 'bg-[#e2b07e] text-white font-bold ring-2 ring-[#e2b07e]/30'
+                        : isTH
+                          ? 'bg-amber-50 text-[#b88c5e] border border-amber-300/50 hover:bg-amber-100/40'
+                          : 'hover:bg-slate-100 text-slate-600'
+                    }`}
+                  >
+                    <span className="text-base">{l.flag}</span>
+                    <span className="text-xs font-semibold hidden md:inline">
+                      {isTH ? 'TH (แนะนำ)' : l.code}
+                    </span>
+                    {isTH && lang !== 'TH' && (
+                      <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
             </div>
           </div>
 

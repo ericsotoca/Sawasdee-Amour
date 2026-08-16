@@ -1,4 +1,5 @@
 export type Language = 'FR' | 'EN' | 'TH';
+export type UserRole = 'MALE_WESTERN' | 'FEMALE_THAI';
 
 export interface QuizQuestion {
   id: string;

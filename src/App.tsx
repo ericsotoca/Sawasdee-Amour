@@ -1,11 +1,14 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { Language, Lesson } from './types';
+import { Language, Lesson, UserRole } from './types';
 import { lessons } from './data/lessons';
 import Sidebar from './components/Sidebar';
 import InteractiveSchema from './components/InteractiveSchema';
 import QuizView from './components/QuizView';
 import GlossaryView from './components/GlossaryView';
 import CertificateView from './components/CertificateView';
+import SalesLandingPage from './components/SalesLandingPage';
+import RoleSelectionScreen from './components/RoleSelectionScreen';
+import { rolePerspectives } from './data/rolePerspectives';
 import { 
   Menu, BookOpen, GraduationCap, Trophy, CheckCircle, 
   ChevronLeft, ChevronRight, Award, HelpCircle, Heart, 
@@ -15,7 +18,23 @@ import {
 
 export default function App() {
   // Global States
-  const [lang, setLang] = useState<Language>('FR');
+  const [lang, setLang] = useState<Language>(() => {
+    try {
+      return (localStorage.getItem('sawasdee_language') as Language) || 'TH';
+    } catch {
+      return 'TH';
+    }
+  });
+  
+  // User Role State
+  const [userRole, setUserRole] = useState<UserRole | null>(() => {
+    try {
+      return localStorage.getItem('sawasdee_user_role') as UserRole | null;
+    } catch {
+      return null;
+    }
+  });
+
   const [activeLessonId, setActiveLessonId] = useState<number>(1);
   const [completedLessons, setCompletedLessons] = useState<number[]>([]);
   const [quizScores, setQuizScores] = useState<Record<number, number>>({});
@@ -72,6 +91,21 @@ export default function App() {
   // Language Change helper
   const handleLanguageChange = (newLang: Language) => {
     setLang(newLang);
+    try {
+      localStorage.setItem('sawasdee_language', newLang);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  // Role Change helper
+  const handleRoleChange = (newRole: UserRole) => {
+    setUserRole(newRole);
+    try {
+      localStorage.setItem('sawasdee_user_role', newRole);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   // Toggle single lesson manual checkbox completion
@@ -149,6 +183,16 @@ export default function App() {
     }
   };
 
+  const handleUnlockWithPassword = (password: string): boolean => {
+    const normalized = password.trim().toUpperCase();
+    if (normalized === 'AMOUR10' || normalized === 'SAWASDEE' || normalized === 'LOVE10') {
+      setIsPremiumUnlocked(true);
+      localStorage.setItem('sawasdee_premium_unlocked', 'true');
+      return true;
+    }
+    return false;
+  };
+
   // Global translation text for general layout
   const t = {
     title: "Sawasdee-Amour Academy",
@@ -185,6 +229,10 @@ export default function App() {
 
   const isCertificateUnlocked = completedLessons.length === lessons.length;
 
+  if (!userRole) {
+    return <RoleSelectionScreen onSelect={(role, language) => { handleRoleChange(role); handleLanguageChange(language); }} />;
+  }
+
   return (
     <div className="min-h-screen bg-[#fdfbf7] text-slate-800 flex flex-col font-sans antialiased selection:bg-[#e2b07e]/30 selection:text-slate-900">
       
@@ -207,6 +255,8 @@ export default function App() {
           isViewingGlossary={isViewingGlossary}
           isViewingCertificate={isViewingCertificate}
           isPremiumUnlocked={isPremiumUnlocked}
+          userRole={userRole}
+          onRoleChange={handleRoleChange}
         />
 
         {/* Content Panel with Header and Scrollable Body */}
@@ -245,23 +295,34 @@ export default function App() {
 
             {/* Language Selection Flags (No JP access!) */}
             <div className="flex items-center gap-2">
-              <div className="flex gap-1 bg-[#f7f3ed] p-1 rounded-lg border border-[#e5e1da]">
+              <div className="flex gap-1.5 bg-[#f7f3ed] p-1.5 rounded-xl border border-[#e5e1da]">
                 {(['TH', 'EN', 'FR'] as Language[]).map((code) => {
                   const flag = code === 'TH' ? '🇹🇭' : code === 'EN' ? '🇬🇧' : '🇫🇷';
+                  const isTH = code === 'TH';
                   return (
                     <button
                       key={code}
                       id={`top-header-lang-btn-${code}`}
                       onClick={() => handleLanguageChange(code)}
                       type="button"
-                      className={`px-2.5 py-1 rounded-md text-xs sm:text-sm transition-all flex items-center gap-1.5 font-bold cursor-pointer ${
+                      className={`px-3 py-1 rounded-lg text-xs sm:text-sm transition-all flex items-center gap-1.5 font-bold cursor-pointer relative ${
                         lang === code
-                          ? 'bg-[#e2b07e] text-white shadow-xs'
-                          : 'hover:bg-[#efece6] text-slate-600'
+                          ? 'bg-[#e2b07e] text-white shadow-xs ring-2 ring-[#e2b07e]/30'
+                          : isTH
+                            ? 'bg-amber-50 text-[#b88c5e] border border-amber-300/60 hover:bg-amber-100/40'
+                            : 'hover:bg-[#efece6] text-slate-600'
                       }`}
                     >
                       <span>{flag}</span>
-                      <span className="text-[10px] font-bold hidden sm:inline">{code}</span>
+                      <span className="text-[10px] font-bold hidden xs:inline">
+                        {isTH ? 'TH (แนะนำ)' : code}
+                      </span>
+                      {isTH && lang !== 'TH' && (
+                        <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
+                        </span>
+                      )}
                     </button>
                   );
                 })}
@@ -277,71 +338,7 @@ export default function App() {
           ) : isViewingCertificate ? (
             <CertificateView lang={lang} onClose={() => setIsViewingCertificate(false)} />
           ) : activeLesson.id >= 4 && !isPremiumUnlocked ? (
-            <div className="bg-white p-6 sm:p-10 rounded-2xl border border-[#e5e1da] shadow-md max-w-xl mx-auto text-center space-y-6 my-4">
-              <div className="w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center mx-auto text-[#b88c5e] border border-[#e2b07e]/30">
-                <Lock className="w-8 h-8" />
-              </div>
-
-              <div className="space-y-2">
-                <span className="text-[10px] uppercase font-extrabold text-[#b88c5e] tracking-widest bg-[#e2b07e]/15 px-3 py-1 rounded-full">
-                  {lang === 'FR' ? 'Accès Premium Requis' : lang === 'EN' ? 'Premium Access Required' : 'จำเป็นต้องมีสิทธิ์เข้าถึงแบบพรีเมียม'}
-                </span>
-                <h3 className="font-serif text-xl sm:text-2xl font-extrabold text-[#403d39] tracking-tight">
-                  {lang === 'FR' ? 'Débloquez la suite du programme' : lang === 'EN' ? 'Unlock the rest of the curriculum' : 'ปลดล็อกหลักสูตรที่เหลือทั้งหมด'}
-                </h3>
-              </div>
-
-              <div className="text-xs sm:text-sm text-slate-600 leading-relaxed space-y-4 font-sans text-left bg-slate-50/55 p-4 sm:p-5 rounded-xl border border-[#e5e1da]">
-                {lang === 'FR' && (
-                  <p>
-                    Ce module fait partie du programme <strong>Premium</strong> de l'Académie. Pour déverrouiller l'accès complet à tous les modules restants (4 à 12) ainsi qu'au certificat académique final, veuillez demander le mot de passe d'accès à la personne qui vous a partagé ce lien. L'accès total est proposé pour l'équivalent de <strong>10 €</strong>.
-                  </p>
-                )}
-                {lang === 'EN' && (
-                  <p>
-                    This module is part of the Academy's <strong>Premium</strong> curriculum. To unlock full access to all remaining modules (4 to 12) and the final academic certificate, please ask the person who shared this link with you for the password. Full lifetime access is available for the equivalent of <strong>10 €</strong>.
-                  </p>
-                )}
-                {lang === 'TH' && (
-                  <p>
-                    บทเรียนนี้เป็นส่วนหนึ่งของหลักสูตร <strong>พรีเมียม</strong> ของสถาบัน หากต้องการปลดล็อกการเข้าถึงบทเรียนที่เหลือทั้งหมด (บทที่ 4 ถึง 12) รวมถึงสิทธิ์รับใบประกาศนียบัตรเกียรติยศ โปรดติดต่อขอรับรหัสผ่านจากบุคคลที่ส่งลิงก์นี้ให้กับคุณ โดยมีค่าธรรมเนียมการเข้าถึงตลอดชีพเทียบเท่า <strong>10 ยูโร</strong>
-                  </p>
-                )}
-              </div>
-
-              <form onSubmit={handleUnlockPremium} className="space-y-3 pt-2 max-w-sm mx-auto">
-                <div>
-                  <input
-                    type="password"
-                    placeholder={lang === 'FR' ? 'Saisir le mot de passe...' : lang === 'EN' ? 'Enter password...' : 'กรอกรหัสผ่าน...'}
-                    value={passwordInput}
-                    onChange={(e) => {
-                      setPasswordInput(e.target.value);
-                      setPasswordError(false);
-                    }}
-                    className={`w-full px-4 py-3 rounded-xl border-2 text-center text-sm font-bold transition-all outline-none ${
-                      passwordError 
-                        ? 'border-rose-500 bg-rose-50/20 focus:border-rose-500 text-rose-700' 
-                        : 'border-[#e5e1da] focus:border-[#e2b07e] text-slate-800 bg-white'
-                    }`}
-                  />
-                </div>
-
-                {passwordError && (
-                  <p className="text-xs text-rose-500 font-bold">
-                    {lang === 'FR' ? 'Mot de passe incorrect' : lang === 'EN' ? 'Incorrect password' : 'รหัสผ่านไม่ถูกต้อง'}
-                  </p>
-                )}
-
-                <button
-                  type="submit"
-                  className="w-full py-3 bg-[#e2b07e] hover:bg-[#d4a06d] active:scale-98 text-white font-bold rounded-xl text-xs sm:text-sm shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <Unlock className="w-4 h-4" />
-                  <span>{lang === 'FR' ? 'Déverrouiller le programme' : lang === 'EN' ? 'Unlock curriculum' : 'ปลดล็อกหลักสูตร'}</span>
-                </button>
-              </form>
-            </div>
+            <SalesLandingPage lang={lang} onUnlock={handleUnlockWithPassword} />
           ) : (
             /* Active Module View */
             <article className="space-y-8">
@@ -405,22 +402,87 @@ export default function App() {
                 </div>
               </section>
 
-              {/* Interactive Visual Diagram Block */}
-              <section className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-[#b88c5e]" />
-                  <div>
-                    <h3 className="font-serif text-base md:text-lg font-bold text-[#403d39]">
-                      {t.schemaTitle[lang]}
-                    </h3>
-                    <p className="text-[11px] text-slate-400 font-medium">
-                      {t.schemaCaption[lang]}
-                    </p>
-                  </div>
-                </div>
+              {/* Specialized Bicultural Advice Section */}
+              {rolePerspectives[activeLesson.id] && userRole && (
+                <section className="space-y-3">
+                  {(() => {
+                    const adviceData = rolePerspectives[activeLesson.id][userRole][lang];
+                    const isFemale = userRole === 'FEMALE_THAI';
+                    return (
+                      <div 
+                        className={`p-5 sm:p-6 rounded-xl border transition-all duration-300 ${
+                          isFemale 
+                            ? 'bg-rose-50/40 border-rose-200/60' 
+                            : 'bg-amber-50/40 border-amber-200/60'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2.5 mb-3">
+                          <span className="text-xl">{isFemale ? '🌺' : '🌍'}</span>
+                          <h4 className={`font-serif text-sm sm:text-base font-black ${
+                            isFemale ? 'text-rose-800' : 'text-amber-800'
+                          }`}>
+                            {adviceData.title}
+                          </h4>
+                          <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border shrink-0 ${
+                            isFemale 
+                              ? 'bg-rose-100/60 border-rose-200 text-rose-700' 
+                              : 'bg-amber-100/60 border-amber-200 text-amber-700'
+                          }`}>
+                            {lang === 'FR' ? 'Personnalisé' : lang === 'EN' ? 'Tailored' : 'เฉพาะคุณ'}
+                          </span>
+                        </div>
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">
+                          {adviceData.advice}
+                        </p>
+                        
+                        {/* Interactive toggle link to read the alternative perspective */}
+                        <div className="mt-4 pt-3 border-t border-dashed border-slate-200/80 flex items-center justify-between text-[11px]">
+                          <span className="text-slate-400 font-medium italic">
+                            {lang === 'FR' 
+                              ? "Basé sur votre profil sélectionné" 
+                              : lang === 'EN' 
+                                ? "Based on your selected profile" 
+                                : "ปรับตามโปรไฟล์ที่คุณเลือก"}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => handleRoleChange(isFemale ? 'MALE_WESTERN' : 'FEMALE_THAI')}
+                            className="text-[#b88c5e] hover:text-[#e2b07e] font-extrabold cursor-pointer transition-all flex items-center gap-1"
+                          >
+                            <span>
+                              {lang === 'FR' 
+                                ? "Lire la perspective opposée" 
+                                : lang === 'EN' 
+                                  ? "Read opposite perspective" 
+                                  : "อ่านมุมมองฝ่ายตรงข้าม"}
+                            </span>
+                            <span>→</span>
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </section>
+              )}
 
-                <InteractiveSchema lessonId={activeLesson.id} lang={lang} />
-              </section>
+              {/* Interactive Visual Diagram Block */}
+              {activeLesson.id <= 12 && (
+                <section className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-[#b88c5e]" />
+                    <div>
+                      <h3 className="font-serif text-base md:text-lg font-bold text-[#403d39]">
+                        {t.schemaTitle[lang]}
+                      </h3>
+                      <p className="text-[11px] text-slate-400 font-medium">
+                        {t.schemaCaption[lang]}
+                      </p>
+                    </div>
+                  </div>
+
+                  <InteractiveSchema lessonId={activeLesson.id} lang={lang} />
+                </section>
+              )}
 
               {/* Progress Manual Confirmation Button */}
               <section className="bg-white p-4 rounded-xl border border-[#e5e1da] flex items-center gap-3 shadow-2xs">
