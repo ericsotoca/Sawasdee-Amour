@@ -1,5 +1,5 @@
 import { Language, Lesson, UserRole } from '../types';
-import { Menu, X, BookOpen, GraduationCap, Trophy, HelpCircle, ArrowRight, CheckCircle2, Lock, LogOut } from 'lucide-react';
+import { Menu, X, BookOpen, GraduationCap, Trophy, HelpCircle, ArrowRight, CheckCircle2, Lock, LogOut, Heart, Wind, FileText } from 'lucide-react';
 
 interface SidebarProps {
   lessons: Lesson[];
@@ -15,6 +15,12 @@ interface SidebarProps {
   isCertificateUnlocked: boolean;
   isViewingGlossary: boolean;
   isViewingCertificate: boolean;
+  isViewingHarmony: boolean;
+  onViewHarmony: () => void;
+  isViewingBreathing: boolean;
+  onViewBreathing: () => void;
+  isViewingJournal: boolean;
+  onViewJournal: () => void;
   isPremiumUnlocked: boolean;
   userRole?: UserRole;
   onRoleChange?: (role: UserRole) => void;
@@ -35,6 +41,12 @@ export default function Sidebar({
   isCertificateUnlocked,
   isViewingGlossary,
   isViewingCertificate,
+  isViewingHarmony,
+  onViewHarmony,
+  isViewingBreathing,
+  onViewBreathing,
+  isViewingJournal,
+  onViewJournal,
   isPremiumUnlocked,
   userRole,
   onRoleChange,
@@ -49,7 +61,10 @@ export default function Sidebar({
     certBtn: { FR: "Mon Certificat Académique", EN: "My Academic Certificate", TH: "ประกาศนียบัตรของฉัน" },
     minutes: { FR: "min", EN: "min", TH: "นาที" },
     unlocked: { FR: "Débloqué", EN: "Unlocked", TH: "ปลดล็อกแล้ว" },
-    locked: { FR: "Bloqué (Tous les Modules Requis)", EN: "Locked (All Modules Req.)", TH: "ล็อกอยู่ (ต้องเรียนครบทุกบทเรียนก่อน)" }
+    locked: { FR: "Bloqué (Tous les Modules Requis)", EN: "Locked (All Modules Req.)", TH: "ล็อกอยู่ (ต้องเรียนครบทุกบทเรียนก่อน)" },
+    harmonyBtn: { FR: "Bilan d'Harmonie", EN: "Harmony Assessment", TH: "แบบทดสอบความสอดคล้อง" },
+    breathingBtn: { FR: "Espace Respiratoire 'Jai Yen'", EN: "'Jai Yen' Breathing Space", TH: "ฝึกกำหนดลมหายใจ 'ใจเย็น'" },
+    journalBtn: { FR: "Carnet de Route du Couple", EN: "Couple's Shared Roadmap", TH: "บันทึกการเดินทางของคู่เรา" }
   };
 
   const languages: { code: Language; label: string; flag: string }[] = [
@@ -219,6 +234,57 @@ export default function Sidebar({
               <span className="text-[9px] font-extrabold uppercase">
                 {isCertificateUnlocked ? "OK" : "LOCKED"}
               </span>
+            </button>
+
+            {/* Harmony Assessment Button */}
+            <button
+              id="sidebar-harmony-btn"
+              onClick={onViewHarmony}
+              className={`w-full text-left p-3 rounded-lg text-xs font-bold transition-all flex items-center justify-between border ${
+                isViewingHarmony
+                  ? 'bg-[#b88c5e] text-white border-[#b88c5e] shadow-sm'
+                  : 'bg-white border-[#e5e1da] text-[#636e72] hover:bg-[#efece6]'
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <Heart className="w-4 h-4 text-rose-500 fill-rose-500" />
+                {t.harmonyBtn[lang]}
+              </span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+
+            {/* Breathing Space Button */}
+            <button
+              id="sidebar-breathing-btn"
+              onClick={onViewBreathing}
+              className={`w-full text-left p-3 rounded-lg text-xs font-bold transition-all flex items-center justify-between border ${
+                isViewingBreathing
+                  ? 'bg-[#b88c5e] text-white border-[#b88c5e] shadow-sm'
+                  : 'bg-white border-[#e5e1da] text-[#636e72] hover:bg-[#efece6]'
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <Wind className="w-4 h-4 text-teal-500" />
+                {t.breathingBtn[lang]}
+              </span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+
+            {/* Couple Journal Button */}
+            <button
+              id="sidebar-journal-btn"
+              onClick={onViewJournal}
+              className={`w-full text-left p-3 rounded-lg text-xs font-bold transition-all flex items-center justify-between border ${
+                isViewingJournal
+                  ? 'bg-[#b88c5e] text-white border-[#b88c5e] shadow-sm'
+                  : 'bg-white border-[#e5e1da] text-[#636e72] hover:bg-[#efece6]'
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <FileText className="w-4 h-4 text-amber-500" />
+                {t.journalBtn[lang]}
+              </span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 

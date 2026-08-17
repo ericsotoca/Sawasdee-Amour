@@ -6,6 +6,9 @@ import InteractiveSchema from './components/InteractiveSchema';
 import QuizView from './components/QuizView';
 import GlossaryView from './components/GlossaryView';
 import CertificateView from './components/CertificateView';
+import HarmonyAssessmentView from './components/HarmonyAssessmentView';
+import JaiYenSpaceView from './components/JaiYenSpaceView';
+import CoupleJournalView from './components/CoupleJournalView';
 import SalesLandingPage from './components/SalesLandingPage';
 import RoleSelectionScreen from './components/RoleSelectionScreen';
 import { rolePerspectives } from './data/rolePerspectives';
@@ -13,7 +16,7 @@ import {
   Menu, BookOpen, GraduationCap, Trophy, CheckCircle, 
   ChevronLeft, ChevronRight, Award, HelpCircle, Heart, 
   BookOpenCheck, ShieldCheck, Sparkles, CheckSquare, Square,
-  Lock, Unlock
+  Lock, Unlock, Bookmark
 } from 'lucide-react';
 
 export default function App() {
@@ -43,6 +46,19 @@ export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isViewingGlossary, setIsViewingGlossary] = useState(false);
   const [isViewingCertificate, setIsViewingCertificate] = useState(false);
+  const [isViewingHarmony, setIsViewingHarmony] = useState(false);
+  const [isViewingBreathing, setIsViewingBreathing] = useState(false);
+  const [isViewingJournal, setIsViewingJournal] = useState(false);
+
+  // Bookmarks / Saved Favorites
+  const [savedFavorites, setSavedFavorites] = useState<string[]>(() => {
+    try {
+      const stored = localStorage.getItem('sawasdee_favorites');
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
+  });
   
   // Modal / Celebration trigger
   const [showCelebration, setShowCelebration] = useState(false);
@@ -150,6 +166,9 @@ export default function App() {
     setActiveLessonId(id);
     setIsViewingGlossary(false);
     setIsViewingCertificate(false);
+    setIsViewingHarmony(false);
+    setIsViewingBreathing(false);
+    setIsViewingJournal(false);
     setIsSidebarOpen(false); // Close mobile drawer
     // Scroll content to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -158,6 +177,9 @@ export default function App() {
   const showGlossary = () => {
     setIsViewingGlossary(true);
     setIsViewingCertificate(false);
+    setIsViewingHarmony(false);
+    setIsViewingBreathing(false);
+    setIsViewingJournal(false);
     setIsSidebarOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -166,8 +188,56 @@ export default function App() {
     if (completedLessons.length === lessons.length) {
       setIsViewingCertificate(true);
       setIsViewingGlossary(false);
+      setIsViewingHarmony(false);
+      setIsViewingBreathing(false);
+      setIsViewingJournal(false);
       setIsSidebarOpen(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const showHarmony = () => {
+    setIsViewingHarmony(true);
+    setIsViewingGlossary(false);
+    setIsViewingCertificate(false);
+    setIsViewingBreathing(false);
+    setIsViewingJournal(false);
+    setIsSidebarOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const showBreathing = () => {
+    setIsViewingBreathing(true);
+    setIsViewingGlossary(false);
+    setIsViewingCertificate(false);
+    setIsViewingHarmony(false);
+    setIsViewingJournal(false);
+    setIsSidebarOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const showJournal = () => {
+    setIsViewingJournal(true);
+    setIsViewingGlossary(false);
+    setIsViewingCertificate(false);
+    setIsViewingHarmony(false);
+    setIsViewingBreathing(false);
+    setIsSidebarOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const toggleFavorite = (favKey: string) => {
+    let updated: string[];
+    if (savedFavorites.includes(favKey)) {
+      updated = savedFavorites.filter((k) => k !== favKey);
+    } else {
+      updated = [...savedFavorites, favKey];
+    }
+    setSavedFavorites(updated);
+    try {
+      localStorage.setItem('sawasdee_favorites', JSON.stringify(updated));
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -266,6 +336,12 @@ export default function App() {
           isCertificateUnlocked={isCertificateUnlocked}
           isViewingGlossary={isViewingGlossary}
           isViewingCertificate={isViewingCertificate}
+          isViewingHarmony={isViewingHarmony}
+          onViewHarmony={showHarmony}
+          isViewingBreathing={isViewingBreathing}
+          onViewBreathing={showBreathing}
+          isViewingJournal={isViewingJournal}
+          onViewJournal={showJournal}
           isPremiumUnlocked={isPremiumUnlocked}
           userRole={userRole}
           onRoleChange={handleRoleChange}
@@ -289,7 +365,7 @@ export default function App() {
               </button>
               
               {/* Module Name / Breadcrumb */}
-              {!isViewingGlossary && !isViewingCertificate ? (
+              {!isViewingGlossary && !isViewingCertificate && !isViewingHarmony && !isViewingBreathing && !isViewingJournal ? (
                 <div className="flex items-center gap-2 sm:gap-3">
                   <span className="text-[10px] sm:text-xs font-bold text-[#a09384] uppercase tracking-widest">
                     Module {activeLesson.id.toString().padStart(2, '0')}
@@ -301,7 +377,11 @@ export default function App() {
                 </div>
               ) : (
                 <h2 className="font-serif text-[#2d3436] text-sm md:text-base font-semibold">
-                  {isViewingGlossary ? t.glossaryBtn[lang] : t.certBtn[lang]}
+                  {isViewingGlossary ? t.glossaryBtn[lang] : 
+                   isViewingCertificate ? t.certBtn[lang] :
+                   isViewingHarmony ? (lang === 'FR' ? "Bilan d'Harmonie" : lang === 'EN' ? "Harmony Assessment" : "แบบทดสอบความสอดคล้อง") :
+                   isViewingBreathing ? (lang === 'FR' ? "Espace Respiratoire 'Jai Yen'" : lang === 'EN' ? "'Jai Yen' Breathing Space" : "ฝึกกำหนดลมหายใจ 'ใจเย็น'") :
+                   (lang === 'FR' ? "Carnet de Route du Couple" : lang === 'EN' ? "Couple's Shared Roadmap" : "บันทึกการเดินทางของคู่เรา")}
                 </h2>
               )}
             </div>
@@ -347,9 +427,21 @@ export default function App() {
           <main className="flex-1 px-4 pt-6 pb-24 md:p-8 lg:p-12 max-w-4xl mx-auto w-full space-y-8">
           
           {isViewingGlossary ? (
-            <GlossaryView lang={lang} />
+            <GlossaryView lang={lang} savedFavorites={savedFavorites} onToggleFavorite={toggleFavorite} />
           ) : isViewingCertificate ? (
             <CertificateView lang={lang} onClose={() => setIsViewingCertificate(false)} />
+          ) : isViewingHarmony ? (
+            <HarmonyAssessmentView lang={lang} userRole={userRole} />
+          ) : isViewingBreathing ? (
+            <JaiYenSpaceView lang={lang} />
+          ) : isViewingJournal ? (
+            <CoupleJournalView 
+              lang={lang} 
+              savedFavorites={savedFavorites} 
+              onToggleFavorite={toggleFavorite}
+              onNavigateToLesson={(id) => selectLesson(id)}
+              onNavigateToGlossary={() => showGlossary()}
+            />
           ) : activeLesson.id >= 4 && !isPremiumUnlocked ? (
             <SalesLandingPage lang={lang} onUnlock={handleUnlockWithPassword} />
           ) : (
@@ -377,9 +469,24 @@ export default function App() {
                   </div>
                 </div>
 
-                <h1 className="font-serif text-2xl md:text-3xl font-extrabold text-[#403d39] leading-tight">
-                  {activeLesson.title[lang]}
-                </h1>
+                <div className="flex justify-between items-start gap-4">
+                  <h1 className="font-serif text-2xl md:text-3xl font-extrabold text-[#403d39] leading-tight flex-1">
+                    {activeLesson.title[lang]}
+                  </h1>
+                  
+                  <button
+                    type="button"
+                    onClick={() => toggleFavorite(`lesson-${activeLesson.id}`)}
+                    className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
+                      savedFavorites.includes(`lesson-${activeLesson.id}`)
+                        ? 'text-white bg-[#b88c5e] border-[#b88c5e] shadow-sm'
+                        : 'text-slate-400 border-[#e5e1da] bg-white hover:bg-[#efece6]/60'
+                    }`}
+                    title={savedFavorites.includes(`lesson-${activeLesson.id}`) ? "Retirer des favoris" : "Epingler au carnet"}
+                  >
+                    <Bookmark className={`w-4 h-4 ${savedFavorites.includes(`lesson-${activeLesson.id}`) ? 'fill-white' : ''}`} />
+                  </button>
+                </div>
                 <p className="text-sm md:text-base text-slate-500 italic max-w-2xl font-serif">
                   {activeLesson.subtitle[lang]}
                 </p>
@@ -429,20 +536,37 @@ export default function App() {
                             : 'bg-amber-50/40 border-amber-200/60'
                         }`}
                       >
-                        <div className="flex items-center gap-2.5 mb-3">
-                          <span className="text-xl">{isFemale ? '🌺' : '🌍'}</span>
-                          <h4 className={`font-serif text-sm sm:text-base font-black ${
-                            isFemale ? 'text-rose-800' : 'text-amber-800'
-                          }`}>
-                            {adviceData.title}
-                          </h4>
-                          <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border shrink-0 ${
-                            isFemale 
-                              ? 'bg-rose-100/60 border-rose-200 text-rose-700' 
-                              : 'bg-amber-100/60 border-amber-200 text-amber-700'
-                          }`}>
-                            {lang === 'FR' ? 'Personnalisé' : lang === 'EN' ? 'Tailored' : 'เฉพาะคุณ'}
-                          </span>
+                        <div className="flex items-start justify-between gap-3 mb-3">
+                          <div className="flex flex-wrap items-center gap-2.5">
+                            <span className="text-xl">{isFemale ? '🌺' : '🌍'}</span>
+                            <h4 className={`font-serif text-sm sm:text-base font-black ${
+                              isFemale ? 'text-rose-800' : 'text-amber-800'
+                            }`}>
+                              {adviceData.title}
+                            </h4>
+                            <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border shrink-0 ${
+                              isFemale 
+                                ? 'bg-rose-100/60 border-rose-200 text-rose-700' 
+                                : 'bg-amber-100/60 border-amber-200 text-amber-700'
+                            }`}>
+                              {lang === 'FR' ? 'Personnalisé' : lang === 'EN' ? 'Tailored' : 'เฉพาะคุณ'}
+                            </span>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() => toggleFavorite(`advice-${activeLesson.id}`)}
+                            className={`p-1 rounded-md transition-all cursor-pointer ${
+                              savedFavorites.includes(`advice-${activeLesson.id}`)
+                                ? isFemale 
+                                  ? 'text-rose-700 bg-rose-100 border border-rose-200' 
+                                  : 'text-[#b88c5e] bg-amber-100 border border-amber-200'
+                                : 'text-slate-400 hover:text-slate-600'
+                            }`}
+                            title="Epingler ce conseil"
+                          >
+                            <Bookmark className={`w-3.5 h-3.5 ${savedFavorites.includes(`advice-${activeLesson.id}`) ? 'fill-current' : ''}`} />
+                          </button>
                         </div>
                         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">
                           {adviceData.advice}

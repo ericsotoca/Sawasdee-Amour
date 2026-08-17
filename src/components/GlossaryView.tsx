@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { glossaryItems } from '../data/glossary';
 import { Language } from '../types';
-import { Search, BookOpen, Sparkles, HelpCircle } from 'lucide-react';
+import { Search, BookOpen, Sparkles, HelpCircle, Bookmark } from 'lucide-react';
 
 interface GlossaryViewProps {
   lang: Language;
+  savedFavorites?: string[];
+  onToggleFavorite?: (id: string) => void;
 }
 
-export default function GlossaryView({ lang }: GlossaryViewProps) {
+export default function GlossaryView({ lang, savedFavorites = [], onToggleFavorite }: GlossaryViewProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('All');
 
@@ -108,13 +110,30 @@ export default function GlossaryView({ lang }: GlossaryViewProps) {
                         {item.category[lang]}
                       </span>
                     </div>
-                    <div className="text-right">
-                      <span className="text-sm font-bold text-slate-400 block font-serif" dir="ltr">
-                        {item.thaiScript}
-                      </span>
-                      <span className="text-[10px] text-slate-400 italic block">
-                        /{item.phonetic}/
-                      </span>
+                    <div className="text-right flex items-start gap-2">
+                      <div>
+                        <span className="text-sm font-bold text-slate-400 block font-serif" dir="ltr">
+                          {item.thaiScript}
+                        </span>
+                        <span className="text-[10px] text-slate-400 italic block">
+                          /{item.phonetic}/
+                        </span>
+                      </div>
+
+                      {onToggleFavorite && (
+                        <button
+                          type="button"
+                          onClick={() => onToggleFavorite(`glossary-${item.id}`)}
+                          className={`p-1 rounded-md transition-all cursor-pointer shrink-0 ${
+                            savedFavorites.includes(`glossary-${item.id}`)
+                              ? 'text-[#b88c5e] bg-[#e2b07e]/10'
+                              : 'text-slate-300 hover:text-[#b88c5e]'
+                          }`}
+                          title="Epingler au carnet"
+                        >
+                          <Bookmark className={`w-4 h-4 ${savedFavorites.includes(`glossary-${item.id}`) ? 'fill-[#b88c5e]' : ''}`} />
+                        </button>
+                      )}
                     </div>
                   </div>
 
