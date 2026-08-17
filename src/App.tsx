@@ -111,8 +111,10 @@ export default function App() {
   // Logout helper
   const handleLogout = () => {
     setUserRole(null);
+    setIsPremiumUnlocked(false);
     try {
       localStorage.removeItem('sawasdee_user_role');
+      localStorage.removeItem('sawasdee_premium_unlocked');
     } catch (e) {
       console.error(e);
     }
